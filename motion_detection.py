@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 
 # capturing video
-cap = cv2.VideoCapture('road.mp4')
+cap = cv2.VideoCapture(0)
 
 # reading back-to-back frames(images) from video
 ret, frame1 = cap.read()
