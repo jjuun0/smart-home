@@ -35,9 +35,13 @@
 - dynamodb 에 People, Log 테이블을 만듦  
   - People : 이 테이블에 등록을 해야 허가된 사람이라고 판단.  
   - ![people_table](https://user-images.githubusercontent.com/66052461/116424194-457a8300-a87c-11eb-92be-9e4494d612ae.png)  
+    - 사람 이름 / 사진 이름 / 이미지 url
+    - DB에 이미지 파일을 저장하는데 최적화된 도구가 아니기 때문에 s3에 이미지 자체를 저장하고 이미지 주소를 DB에 저장한다.
   - Log : 출입자의 신원을 확인하기 위한 테이블.  
   - ![log_table](https://user-images.githubusercontent.com/66052461/116424251-52977200-a87c-11eb-897f-67c32b2a0ce5.png)  
-    - correst : 일치 여부(true, false)를 정렬키로 설정해도 좋을거 같음.  
-    - 현재 인풋 이미지로 collection 과 비교해 유사도를 판단하는데, 이때 여러명이 리턴될수도 있는데 유사도가 가장 높은 값을 가진 사람을 db에 저장하도록 함.
+    - 시간 / 일치 여부 : true / 일치한 이미지 이름 / 유사도
+    - 시간 / 일치 여부 : false / input 이미지 이름 / 유사도(0)
+    - correct : 일치 여부(true, false)를 정렬키로 설정해도 좋을거 같음.  
+    - 현재 input 이미지로 collection 과 비교해 유사도를 판단하는데, 이때 여러명이 리턴될수도 있는데 유사도가 가장 높은 값을 가진 사람을 db에 저장하도록 함.
 
 
