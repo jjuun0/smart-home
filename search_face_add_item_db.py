@@ -2,6 +2,8 @@ from DynamoDB import add_item
 from Rekognition import face_search_by_image
 import datetime
 
+""" rekognition 으로 얼굴 비교한 결과를 dynamodb 에 추가하는 코드 """
+
 bucket = 'junfirstbucket'
 collectionId = 'test_collection'
 fileName = 'iu1.png'
