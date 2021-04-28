@@ -30,3 +30,14 @@
 # 2021.04.27  
 - 개발서를 읽어보니, collection 을 통해 얼굴 비교가 가능하다.
 - collection 에 S3 에 있는 이미지 파일들을(jun_1, son) 추가해주고, S3 의 입력 이미지(jun_2)를 비교해보니 99.9 퍼센트 동일인물이 있다고 나옴, face-id 도 출력됨.  
+
+# 2021.04.28  
+- dynamodb 에 People, Log 테이블을 만듦  
+  - People : 이 테이블에 등록을 해야 허가된 사람이라고 판단.  
+  - ![people_table](https://user-images.githubusercontent.com/66052461/116424194-457a8300-a87c-11eb-92be-9e4494d612ae.png)  
+  - Log : 출입자의 신원을 확인하기 위한 테이블.  
+  - ![log_table](https://user-images.githubusercontent.com/66052461/116424251-52977200-a87c-11eb-897f-67c32b2a0ce5.png)  
+    - correst : 일치 여부(true, false)를 정렬키로 설정해도 좋을거 같음.  
+    - 현재 인풋 이미지로 collection 과 비교해 유사도를 판단하는데, 이때 여러명이 리턴될수도 있는데 유사도가 가장 높은 값을 가진 사람을 db에 저장하도록 함.
+
+
