@@ -3,7 +3,7 @@ import boto3
 
 
 def add_people(name, image_name, url, dynamodb=None):
-    """ People 테이블에 추가하는 함수 """
+    """ People 테이블에 '사람 이름', '이미지 이름', '이미지 url' 을 추가하는 함수 """
     if not dynamodb:
         dynamodb = boto3.resource('dynamodb', endpoint_url="http://dynamodb.ap-northeast-2.amazonaws.com")
 
