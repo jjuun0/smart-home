@@ -66,3 +66,14 @@
 
 - 여태까지 한것 정리  
 ![2021 04 29](https://user-images.githubusercontent.com/66052461/116555111-f2193b00-a936-11eb-8a8b-5a9c9f30b5ed.png)  
+
+# 2021.05.05 ~ 2021.05.06  
+- 어플에서 DynamoDB 값 출력해보기  
+  1. AWS API Gateway 를 이용해 url로 요청을 보내면 DynamoDB 테이블의 데이터를 읽어온다.  
+    - mapping tamplet 을 이용하여 서버에게 요청한 후 서버가 응답하는 형태를 우리가 바꿀 수 있다.  
+    ![People_get](https://user-images.githubusercontent.com/66052461/117308528-94e43300-aebc-11eb-83ce-2fc90ed3bbab.png)  
+  2. Retrofit 을 이용하여 API 를 쉽게 사용해 어플에서도 DynamoDB 테이블의 값을 볼 수 있었다.  
+    - Retrofit : Java 의 HttpClient 의 라이브러리, 네트워크로 부터 전달된 데이터를 우리 프로그램에서 필요한 형태의 객체로 받을 수 있다.  
+    ![get_rest_api_app](https://user-images.githubusercontent.com/66052461/117308968-f73d3380-aebc-11eb-8d0b-c95823d09b4b.png)  
+- 해야 할 것  
+  - Delete, Post(add), Update 도 해봐야함.(rest api, app)  
