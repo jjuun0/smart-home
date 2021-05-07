@@ -77,3 +77,10 @@
     ![get_rest_api_app](https://user-images.githubusercontent.com/66052461/117308968-f73d3380-aebc-11eb-8d0b-c95823d09b4b.png)  
 - 해야 할 것  
   - Delete, Post(add), Update 도 해봐야함.(rest api, app)  
+
+# 2021.05.07
+- Flask 사용해 DynamoDB 테이블 정보를 가져와봤다.
+  - 테이블 전체를 가져오는 scan, 내가 원하는 항목만 가져오는 query 방법 사용.
+  ![image](https://user-images.githubusercontent.com/66052461/117457008-ca078880-af83-11eb-8ac4-bfe45fc2680e.png)
+- 해야 할 것
+  - 내가 서버가 될 수 있는 방법? 찾아봐야함.
