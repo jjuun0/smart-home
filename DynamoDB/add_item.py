@@ -12,7 +12,7 @@ def add_people(name, image_name, url, dynamodb=None):
         Item={
             'Name': name,
             'Image_Name': image_name,
-            'Image_url': url
+            'Image_url': "http://dynamodb.ap-northeast-2.amazonaws.com/" + url
         }
     )
     return response

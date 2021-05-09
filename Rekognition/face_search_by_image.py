@@ -10,7 +10,7 @@ def s3_search_collection(bucket, collectionId, fileName):
     client = boto3.client('rekognition')
 
     response = client.search_faces_by_image(CollectionId=collectionId,
-                                            Image={'S3Object': {'Bucket': bucket, 'Name': fileName}},
+                                            Image={'S3Object': {'Bucket': bucket, 'Name': 'entered/'+fileName}},
                                             FaceMatchThreshold=threshold,
                                             MaxFaces=maxFaces)
     if response['FaceMatches']:

@@ -32,7 +32,7 @@ cam_capture.capture('unknown.png')
 # upload_file(로컬에서 올릴 파일이름, S3 버킷 이름, 버킷에 저장될 파일 이름)
 s3.upload_file("unknown.png", bucket, 'entered/'+filename, ExtraArgs={'ACL': 'public-read'})
 
-response, match_image_id, correct, similarity = face_search_by_image.s3_search_collection(bucket, collectionId, 'entered/'+filename)
+response, match_image_id, correct, similarity = face_search_by_image.s3_search_collection(bucket, collectionId, filename)
 
 
 add_item.add_log(nowDatetime, match_image_id, correct, similarity, dynamodb=0)
