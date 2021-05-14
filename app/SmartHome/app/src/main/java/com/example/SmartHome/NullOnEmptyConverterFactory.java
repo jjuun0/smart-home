@@ -1,4 +1,4 @@
-package com.example.dynamodb;
+package com.example.SmartHome;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;

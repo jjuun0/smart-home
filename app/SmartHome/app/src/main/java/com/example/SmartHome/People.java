@@ -1,6 +1,4 @@
-package com.example.dynamodb;
-
-import com.google.gson.annotations.SerializedName;
+package com.example.SmartHome;
 
 public class People {
     /**

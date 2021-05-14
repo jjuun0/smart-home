@@ -1,4 +1,4 @@
-package com.example.dynamodb;
+package com.example.SmartHome;
 
 import org.junit.Test;
 
