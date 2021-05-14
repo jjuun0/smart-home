@@ -1,8 +1,8 @@
 import torchvision.datasets as dset
-from Dataset import SiameseNetworkDataset
+from SiameseNetwork.Dataset import SiameseNetworkDataset
 import torchvision.transforms as transforms
-from Network import SiameseNetwork
-from ContrastiveLoss import ContrastiveLoss
+from SiameseNetwork.Network import SiameseNetwork
+from SiameseNetwork.ContrastiveLoss import ContrastiveLoss
 from torch import optim
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
@@ -13,7 +13,7 @@ from torch.autograd import Variable
 
 MODELNAME = 'trained_model' + '.pt'
 
-training_dir = "img/train/"
+training_dir = "../img/train/"
 train_batch_size = 16
 train_number_epochs = 100
 

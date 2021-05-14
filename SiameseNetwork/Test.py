@@ -1,5 +1,5 @@
 import torchvision.datasets as dset
-from Dataset import SiameseNetworkDataset
+from SiameseNetwork.Dataset import SiameseNetworkDataset
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 import torch
@@ -8,8 +8,8 @@ import numpy as np
 from torch.autograd import Variable
 import torch.nn.functional as F
 import torchvision.utils
-from Network import SiameseNetwork
-from Train import MODELNAME
+from SiameseNetwork.Network import SiameseNetwork
+from SiameseNetwork.Train import MODELNAME
 
 
 def imshow(img, text=None, should_save=False):
@@ -25,7 +25,7 @@ def imshow(img, text=None, should_save=False):
     plt.show()
 
 
-testing_dir = "img/test/"
+testing_dir = "../img/test/"
 
 
 def test():

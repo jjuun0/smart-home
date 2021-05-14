@@ -35,7 +35,7 @@ class SiameseNetworkDataset(Dataset):
         img1 = img1.convert("L")
 
         if self.should_invert:
-            img0 = PIL.ImageOps.invert(img0)
+            img0 = PIL.ImageOps.invert(img0)  # Invert (negate) the image.
             img1 = PIL.ImageOps.invert(img1)
 
         if self.transform is not None:

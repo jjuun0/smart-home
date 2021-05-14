@@ -33,7 +33,7 @@ class SiameseNetwork(nn.Module):
 
     def forward_once(self, x):
         output = self.cnn1(x)
-        output = output.view(output.size()[0], -1)
+        output = output.view(output.size()[0], -1)  # shape resize
         output = self.fc1(output)
         return output
 
@@ -43,7 +43,7 @@ class SiameseNetwork(nn.Module):
         return output1, output2
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     net = SiameseNetwork()
     print(net)
     # print(list(net.parameters()))
