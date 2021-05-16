@@ -115,5 +115,9 @@
 - 해야할 것  
   - 허가된 사용자로 추가가 되었을때 collection 에는 추가가 따로 안되는데 이를 어떻게 추가할지 고민해봐야함.  
 
+# 2021.05.16  
+- 한 것들 정리  
+![SmartHome_](https://user-images.githubusercontent.com/66052461/118383866-c4bdd400-b63c-11eb-84cf-5ae5f8e24e01.png)
+
 
 
