@@ -41,7 +41,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class SavePeopleActivity extends AppCompatActivity {
     private final String BASEURL = "https://9c39rad6qj.execute-api.ap-northeast-2.amazonaws.com/new/";
     private TextView textViewResult;
     private JsonPlaceHolderApi jsonPlaceHolderApi;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_save_people);
 
         textViewResult = findViewById(R.id.text);
         nameText = findViewById(R.id.name);
@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button button = (Button)findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button save_button = (Button)findViewById(R.id.save_button);
+        save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createPeople(nameText.getText().toString());
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
                 Bitmap img = drawable.getBitmap();
 
-                file = saveBitmapToJpeg(MainActivity.this, img, nameText.getText().toString());
+                file = saveBitmapToJpeg(SavePeopleActivity.this, img, nameText.getText().toString());
                 uploadS3(file);
             }
         });
@@ -121,38 +121,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    private void getPeoples() {
-        Call<List<People>> call = jsonPlaceHolderApi.getPeople();
-
-        call.enqueue(new Callback<List<People>>() {
-            @Override
-            public void onResponse(Call<List<People>> call, Response<List<People>> response) {
-                if (!response.isSuccessful()) {
-                    textViewResult.setText("code: " + response.code());
-                    return;
-                }
-
-                List<People> peoples = response.body();
-                Log.d("error", response.body().toString());
-
-                for (People people : peoples) {
-                    String content = "";
-                    content += "Name: " + people.getName() + "\n";
-                    content += "Image_Name: " + people.getImage_Name() + "\n\n";
-//                    content += "Image_url: " + people.getImage_url() + "\n\n";
-
-                    textViewResult.append(content);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<People>> call, Throwable t) {
-                textViewResult.setText(t.getMessage());
-                Log.d("error", t.getMessage());
-            }
-        });
     }
 
     private void createPeople(String name) {
