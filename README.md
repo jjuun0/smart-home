@@ -115,5 +115,24 @@
 - 해야할 것  
   - 허가된 사용자로 추가가 되었을때 collection 에는 추가가 따로 안되는데 이를 어떻게 추가할지 고민해봐야함.  
 
+# 2021.05.16  
+- 한 것들 정리  
+![SmartHome_](https://user-images.githubusercontent.com/66052461/118383866-c4bdd400-b63c-11eb-84cf-5ae5f8e24e01.png)
 
+
+# 2021.05.18  
+- 어플  
+  - People 조회 기능 추가.  
+  - GUI 추가 (버튼을 눌러서 다른 액티비티 호출하고, 버튼을 누르면 db에 추가가 되거나, db를 조회할 수 있음)  
+  - MainActivity, SavePeopleActivity, GetPeopleActivity 액티비티 클래스 추가   
+  - 초기 어플 화면  
+  ![main](https://user-images.githubusercontent.com/66052461/118621983-d9979480-b801-11eb-9361-a419377da4c7.png)  
+  - 추가  
+  ![add](https://user-images.githubusercontent.com/66052461/118622017-e0bea280-b801-11eb-8eb3-4c73fc89f168.png)  
+  - 조회  
+  ![get](https://user-images.githubusercontent.com/66052461/118622021-e1efcf80-b801-11eb-9c06-b1215d1f00d8.png)  
+
+- 해야할 것  
+  -  현재는 db의 이름만 가져와 화면에 보여주는데, 나중에는 사진까지 보여줄 필요가 있어보임.  
+  -  S3 에 저장된 이미지를 다운받아야 하는거 같은데, -> 조회 버튼을 누르면 사람 사진 / 이름이 같이 보여질수 있으면 좋을듯.  
 
