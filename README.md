@@ -139,3 +139,10 @@
 # 2021.05.19
 - main.py : 실행시킬때마다 collection 을 새로 만들고 s3 버킷의 allowed 폴더에 있는 사진들을 collection에 추가함
   - 마지막에 만들었던 collection 까지 지워준다.  
+
+# 2021.05.23  
+- aws api gateway에서 삭제부분을 만들었다. -> lambda 함수(delete_item_dynamodb_s3) 호출  
+  - lambda 함수(delete_item_dynamodb_s3) : 요청 url에 포함된 이름의 데이터를 삭제한다. (dynamodb 에서 item 을 삭제, S3/allowed 안의 이미지 삭제)  
+![image](https://user-images.githubusercontent.com/66052461/119261085-b3faf880-bc10-11eb-8490-94ab48c1087c.png)  
+
+
