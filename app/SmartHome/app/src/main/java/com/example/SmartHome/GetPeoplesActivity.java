@@ -26,16 +26,19 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class GetPeopleActivity extends AppCompatActivity {
+public class GetPeoplesActivity extends AppCompatActivity {
 
     private JsonPlaceHolderApi jsonPlaceHolderApi;
     TextView people_list_view;
-    private final String BASEURL = "https://9c39rad6qj.execute-api.ap-northeast-2.amazonaws.com/new/";
+//    private final String BASEURL = "https://9c39rad6qj.execute-api.ap-northeast-2.amazonaws.com/new/";
+    private String BASEURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_people);
+
+        BASEURL = getString(R.string.request_url);
 
         people_list_view = findViewById(R.id.people_list_view);
 
@@ -59,7 +62,7 @@ public class GetPeopleActivity extends AppCompatActivity {
     }
 
     private void getPeoples() {
-        Call<List<People>> call = jsonPlaceHolderApi.getPeople();
+        Call<List<People>> call = jsonPlaceHolderApi.getPeoples();
 
         call.enqueue(new Callback<List<People>>() {
             @Override
