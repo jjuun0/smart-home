@@ -145,4 +145,13 @@
   - lambda 함수(delete_item_dynamodb_s3) : 요청 url에 포함된 이름의 데이터를 삭제한다. (dynamodb 에서 item 을 삭제, S3/allowed 안의 이미지 삭제)  
 ![image](https://user-images.githubusercontent.com/66052461/119261085-b3faf880-bc10-11eb-8490-94ab48c1087c.png)  
 
+# 2021.05.24  
+- lambda 함수 수정 : 요청한후 응답을 true, false로 나타내 리턴하게끔 수정  
+- 어플  
+  - 조회시 radio 형식으로 People 에 저장되어있는 테이블을 보여줌  
+  - 이름을 선택하면 s3 에서 이미지들을 다운받아 이미지뷰에 보여줌  
+  - 이름 선택후 삭제하면 s3, dynamodb 모두 삭제  
+  ![image](https://user-images.githubusercontent.com/66052461/119349385-16b7c700-bcd9-11eb-941f-3790a1822aa2.png)
+- 해야할 것  
+  - lambda 함수가 리턴한 값을 어플에서 못가져옴.  
 
