@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SmartHome</string>
+    <string name="request_url">https://9c39rad6qj.execute-api.ap-northeast-2.amazonaws.com/new/</string>
+    <string name="bucket_name">junfirstbucket</string>
+    <string name="region">ap-northeast-2</string>
+
+    <string name="accessKey">AKIASH3RQY4CEKY5YVMK</string>
+    <string name="secretKey">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</string>
 </resources>

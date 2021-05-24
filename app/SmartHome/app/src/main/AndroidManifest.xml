@@ -15,19 +15,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dynamodb">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
             android:enabled="true" />
 
-        <activity android:name=".GetPeopleActivity"></activity>
-        <activity android:name=".SavePeopleActivity"></activity>
+        <activity android:name=".GetPeoplesActivity" />
+        <activity android:name=".SavePeopleActivity" />
     </application>
 
 </manifest>

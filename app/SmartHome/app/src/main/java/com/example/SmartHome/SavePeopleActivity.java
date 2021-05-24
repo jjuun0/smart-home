@@ -42,22 +42,27 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SavePeopleActivity extends AppCompatActivity {
-    private final String BASEURL = "https://9c39rad6qj.execute-api.ap-northeast-2.amazonaws.com/new/";
+    private String BASEURL;
     private TextView textViewResult;
     private JsonPlaceHolderApi jsonPlaceHolderApi;
     private ImageView imageView;
     private EditText nameText;
     private static final int REQUEST_CODE = 0;
 
-    private String bucketName = "junfirstbucket";
-    private String region = "ap-northeast-2";
-    private String saveFolder = "allowed";
+    private String bucketName;
+    private String region;
+    private String saveFolder;
     private File file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_people);
+
+        BASEURL = getString(R.string.request_url);
+        bucketName = getString(R.string.bucket_name);
+        region = getString(R.string.region);
+        saveFolder = "allowed";
 
         textViewResult = findViewById(R.id.text);
         nameText = findViewById(R.id.name);
@@ -134,13 +139,13 @@ public class SavePeopleActivity extends AppCompatActivity {
 
                 if (!response.isSuccessful()) {
                     textViewResult.setText("code: " + response.code());
-                    Log.d("error", response.toString());
+                    Log.d("create", response.toString());
 
                     return;
                 }
                 if (response.code() == 200){
                     textViewResult.setText("Complete saving User data");
-                    Log.d("debugging", response.toString());
+                    Log.d("create", response.toString());
                 }
 
 ////                Log.d("error", response.body().string());
@@ -159,7 +164,7 @@ public class SavePeopleActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<People> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
-                Log.d("error", t.getMessage());
+                Log.d("create", t.getMessage());
             }
         });
 
@@ -167,8 +172,8 @@ public class SavePeopleActivity extends AppCompatActivity {
 
 
     private void uploadS3(File file) {
-        String accessKey = "AKIASH3RQY4CEKY5YVMK";
-        String secretKey = "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";
+        String accessKey = getString(R.string.accessKey);
+        String secretKey = getString(R.string.secretKey);
 
         AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
         AmazonS3Client s3Client = new AmazonS3Client(awsCredentials, Region.getRegion(Regions.AP_NORTHEAST_2));
@@ -180,7 +185,7 @@ public class SavePeopleActivity extends AppCompatActivity {
         uploadObserver.setTransferListener(new TransferListener() {
             @Override
             public void onStateChanged(int id, TransferState state) {
-                Log.d("android", "onStateChanged: " + id + ", " + state.toString());
+                Log.d("uploads3", "onStateChanged: " + id + ", " + state.toString());
 
             }
 
@@ -188,12 +193,12 @@ public class SavePeopleActivity extends AppCompatActivity {
             public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
                 float percentDonef = ((float) bytesCurrent / (float) bytesTotal) * 100;
                 int percentDone = (int)percentDonef;
-                Log.d("android", "ID:" + id + " bytesCurrent: " + bytesCurrent + " bytesTotal: " + bytesTotal + " " + percentDone + "%");
+                Log.d("uploads3", "ID:" + id + " bytesCurrent: " + bytesCurrent + " bytesTotal: " + bytesTotal + " " + percentDone + "%");
             }
 
             @Override
             public void onError(int id, Exception ex) {
-                Log.e("android", ex.getMessage());
+                Log.e("uploads3", ex.getMessage());
             }
         });
     }

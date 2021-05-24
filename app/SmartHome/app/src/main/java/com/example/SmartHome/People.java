@@ -15,6 +15,7 @@ public class People {
     private String Image_Name;
     private String Image_url;
     private String Name;
+
     // https://cishome.tistory.com/137
     // https://nobase-dev.tistory.com/6
     // https://relz.tistory.com/15
@@ -51,5 +52,6 @@ public class People {
     public void setName(String name) {
         Name = name;
     }
+
 }
 
