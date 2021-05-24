@@ -151,7 +151,8 @@
   - 조회시 radio 형식으로 People 에 저장되어있는 테이블을 보여줌  
   - 이름을 선택하면 s3 에서 이미지들을 다운받아 이미지뷰에 보여줌  
   - 이름 선택후 삭제하면 s3, dynamodb 모두 삭제  
-  ![image](https://user-images.githubusercontent.com/66052461/119349385-16b7c700-bcd9-11eb-941f-3790a1822aa2.png)
+  ![image](https://user-images.githubusercontent.com/66052461/119349385-16b7c700-bcd9-11eb-941f-3790a1822aa2.png)  
 - 해야할 것  
   - lambda 함수가 리턴한 값을 어플에서 못가져옴.  
+  ![image](https://user-images.githubusercontent.com/66052461/119349912-b1180a80-bcd9-11eb-8938-8e31e2001fbe.png)  
 
