@@ -33,7 +33,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +40,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SavePeopleActivity extends AppCompatActivity {
+public class AddPeopleActivity extends AppCompatActivity {
     private String BASEURL;
     private TextView textViewResult;
     private JsonPlaceHolderApi jsonPlaceHolderApi;
@@ -57,7 +56,7 @@ public class SavePeopleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_save_people);
+        setContentView(R.layout.activity_add_people);
 
         BASEURL = getString(R.string.request_url);
         bucketName = getString(R.string.bucket_name);
@@ -65,7 +64,7 @@ public class SavePeopleActivity extends AppCompatActivity {
         saveFolder = "allowed";
 
         textViewResult = findViewById(R.id.text);
-        nameText = findViewById(R.id.name);
+        nameText = findViewById(R.id.setname);
 
         Retrofit retrofit = new Retrofit.Builder()  // retrofit 객체 선언
                 .baseUrl(BASEURL)
@@ -98,7 +97,7 @@ public class SavePeopleActivity extends AppCompatActivity {
                 BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
                 Bitmap img = drawable.getBitmap();
 
-                file = saveBitmapToJpeg(SavePeopleActivity.this, img, nameText.getText().toString());
+                file = saveBitmapToJpeg(AddPeopleActivity.this, img, nameText.getText().toString());
                 uploadS3(file);
             }
         });
@@ -144,21 +143,9 @@ public class SavePeopleActivity extends AppCompatActivity {
                     return;
                 }
                 if (response.code() == 200){
-                    textViewResult.setText("Complete saving User data");
+                    textViewResult.setText("추가가 완료되었습니다");
                     Log.d("create", response.toString());
                 }
-
-////                Log.d("error", response.body().string());
-//                People postResponse = response.body();
-//                Log.d("error", postResponse.toString());
-//                String content = "";
-//                content += "Code: " + response.code() + "\n";
-
-//                content += "Name: " + postResponse.getName() + "\n";
-//                content += "Image_Name: " + postResponse.getImage_Name() + "\n";
-//                content += "Image_url: " + postResponse.getImage_url() + "\n";
-
-//                textViewResult.setText(content);
             }
 
             @Override

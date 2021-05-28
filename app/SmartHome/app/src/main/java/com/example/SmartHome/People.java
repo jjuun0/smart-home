@@ -11,7 +11,7 @@ public class People {
      *   ...
      * ]
      */
-//    @SerializedName("Image_Name")  // json 객체 매칭 -> gson 사용
+
     private String Image_Name;
     private String Image_url;
     private String Name;
@@ -25,9 +25,6 @@ public class People {
         this.Image_Name = Image_Name;
         this.Image_url = Image_url;
     }
-
-
-
 
     public String getImage_Name() {
         return Image_Name;
@@ -52,6 +49,5 @@ public class People {
     public void setName(String name) {
         Name = name;
     }
-
 }
 

@@ -2,6 +2,7 @@ package com.example.SmartHome;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -54,6 +55,9 @@ public class GetPeoplesActivity extends AppCompatActivity {
         people_radio = findViewById(R.id.people_radio);
         people_image = findViewById(R.id.people_image);
         result_textview = findViewById(R.id.result);
+        result_textview.setText("조회 버튼을 눌러주세요.");
+        people_list_view.setVisibility(View.INVISIBLE);
+
 
         Retrofit retrofit = new Retrofit.Builder()  // retrofit 객체 선언
                 .baseUrl(BASEURL)
@@ -72,6 +76,7 @@ public class GetPeoplesActivity extends AppCompatActivity {
                 if(imgFile.exists()){
                     Bitmap imgBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                     people_image.setImageBitmap(imgBitmap);
+                    result_textview.setText("삭제하실 항목을 선택하여 삭제 버튼을 눌러주세요");
                 }
                 else{
                     Toast.makeText(GetPeoplesActivity.this, "이미지 파일이 없습니다.", Toast.LENGTH_LONG).show();
@@ -79,6 +84,11 @@ public class GetPeoplesActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void requestAddButtonClicked(View v){
+        Intent intent = new Intent(getApplicationContext(), AddPeopleActivity.class);
+        startActivity(intent);
     }
     
     public void onBackButtonClicked(View v){
@@ -92,6 +102,7 @@ public class GetPeoplesActivity extends AppCompatActivity {
     }
 
     private void getPeoples() {
+        people_list_view.setVisibility(View.VISIBLE);
         Call<List<People>> call = jsonPlaceHolderApi.getPeoples();
 
         call.enqueue(new Callback<List<People>>() {
@@ -110,17 +121,18 @@ public class GetPeoplesActivity extends AppCompatActivity {
                     // https://blog.daum.net/andro_java/1212 radio button 동적으로 추가
                     RadioButton people_radio_button = new RadioButton(getApplicationContext());
                     people_radio_button.setText(people.getName());
+                    people_radio_button.setTextColor(getResources().getColor(R.color.black));
                     people_radio_button.setId(peoples.indexOf(people));
                     RadioGroup.LayoutParams rprms= new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
                     people_list_view.addView(people_radio_button, rprms);
-//                    downloadS3(people.getImage_Name());
+                    downloadS3(people.getImage_Name());
 
                 }
             }
 
             @Override
             public void onFailure(Call<List<People>> call, Throwable t) {
-//                Log.d("error", t.getMessage());
+                Log.d("getpeoples", t.getMessage());
             }
         });
     }
@@ -183,12 +195,12 @@ public class GetPeoplesActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (response.code() == 200){  // url 에서 리턴해주는 값을 가져오지 못함..
+                if (response.code() == 200){  // api 에서 리턴해주는 값을 가져오지 못함..
                     // {
                     //      "DynamoDB delete" : true or false,
                     //      "S3 delete" : true or false
                     // }
-                    result_textview.setText("success delete allowed data");
+                    result_textview.setText("삭제가 완료되었습니다");
                     Log.d("delete onResponse", response.body().toString());
                 }
             }
