@@ -29,28 +29,31 @@ public class MessagingService extends FirebaseMessagingService {
             Context mContext = getApplicationContext();
 
             Intent intent = new Intent(this, MainActivity.class);
-            intent.setAction(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            intent.setAction(Intent.ACTION_MAIN);  // 최초의 액티비티로서 실행할 수 있게 한다.
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);  // 어플리케이션 런쳐로 실행되는 분류
 
             String title = remoteMessage.getData().get("title");
             String message = remoteMessage.getData().get("body");
             String topic = remoteMessage.getFrom();
 
+
+            // 알림(Notification)을 관리하는 NotificationManager 얻어오기
             NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            // 알림을 만들어내는 Builder 객체 생성
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "10001");
+            // 오레오 버전 이하
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                 builder.setVibrate(new long[] {200, 100, 200});
             }
+
             builder.setSmallIcon(R.drawable.ic_launcher_background)
-                    .setAutoCancel(true)
-                    .setDefaults(Notification.DEFAULT_SOUND)
+                    .setAutoCancel(true)  // 알림 터치시 자동으로 삭제
+                    .setDefaults(Notification.DEFAULT_SOUND)  // 알림 발생시 진동, 사운드 설정
                     .setContentTitle(title)
                     .setContentText(message);
 
             if (topic.equals(topics[0])) {
                 notificationId = 0;
-            } else if (topic.equals(topics[1])) {
-                notificationId = 1;
             }
 
             if (notificationId >= 0) {
