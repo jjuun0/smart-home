@@ -175,3 +175,6 @@
   - (문제점) : 현재 시간순으로 정렬되어 있지 않음  
 - app notification 기능 추가  
   - Firebase Cloud Messaging(FCM) 으로 알림 보내게끔 추가  
+  ![notification](https://user-images.githubusercontent.com/66052461/119988892-88f21980-c001-11eb-8e39-5d8ba629ce1e.png)  
+  
+  
