@@ -156,3 +156,22 @@
   - lambda 함수가 리턴한 값을 어플에서 못가져옴.  
   ![image](https://user-images.githubusercontent.com/66052461/119349912-b1180a80-bcd9-11eb-8938-8e31e2001fbe.png)  
 
+# 2021.05.28  
+- 앱 UI 업데이트  
+  - (수정전)
+    - 메인 화면에서 허가된 인물 추가 기능  
+    - 가상 에뮬레이터 이용  
+  - (수정후)  
+    - '관리'에 들어가서 추가할 수 있도록 바꿈  
+    - layout 깔끔하게 변경  
+    - 실제 안드로이드 단말에서 테스트 함  
+    - 메인 화면  
+    ![Screenshot_2021-05-28-18-50-17](https://user-images.githubusercontent.com/66052461/119966279-1de71980-bfe6-11eb-8a4b-76b940136c54.png)  
+    - 관리 화면  
+    ![Screenshot_2021-05-28-18-50-28](https://user-images.githubusercontent.com/66052461/119966432-45d67d00-bfe6-11eb-837c-8889b5d5adde.png)  
+    - 로그 화면  
+    ![Screenshot_2021-05-28-18-50-40](https://user-images.githubusercontent.com/66052461/119966531-5be43d80-bfe6-11eb-9f72-a6b855b15a71.png)  
+- LOG 테이블 조회 기능 추가  
+  - (문제점) : 현재 시간순으로 정렬되어 있지 않음  
+- app notification 기능 추가  
+  - Firebase Cloud Messaging(FCM) 으로 알림 보내게끔 추가  
