@@ -178,3 +178,8 @@
   ![notification](https://user-images.githubusercontent.com/66052461/119988892-88f21980-c001-11eb-8e39-5d8ba629ce1e.png)  
   
   
+# 2021.05.30  
+- 여태 한 것 정리 : 회의 준비  
+![SmartHome_2021 05 30](https://user-images.githubusercontent.com/66052461/120106701-19af2d80-c199-11eb-8323-efbd376433cb.png)  
+
+
