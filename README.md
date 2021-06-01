@@ -182,4 +182,9 @@
 - 여태 한 것 정리 : 회의 준비  
 ![SmartHome_2021 05 30](https://user-images.githubusercontent.com/66052461/120106701-19af2d80-c199-11eb-8323-efbd376433cb.png)  
 
-
+# 2021.06.01  
+- Log 테이블 조회 방식 변경 - Correct(출입자와 허가자의 데이터가 일치하는지) 값 true or false 로 조회 가능  
+  - True 버튼을 누르면  
+  ![true_log](https://user-images.githubusercontent.com/66052461/120315981-e47d1980-c317-11eb-8e8c-85d963aaf232.png)  
+  - False 버튼을 누르면  
+  ![false_log](https://user-images.githubusercontent.com/66052461/120315985-e5ae4680-c317-11eb-93dd-fd913c192b9d.png)  
