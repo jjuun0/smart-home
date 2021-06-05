@@ -188,3 +188,9 @@
   ![true_log](https://user-images.githubusercontent.com/66052461/120315981-e47d1980-c317-11eb-8e8c-85d963aaf232.png)  
   - False 버튼을 누르면  
   ![false_log](https://user-images.githubusercontent.com/66052461/120315985-e5ae4680-c317-11eb-93dd-fd913c192b9d.png)  
+ 
+ 
+# 2021.06.05  
+- s3 버킷에 동영상 하나를 업로드하여 안드로이드에서 스트리밍으로 영상을 볼 수 있는지 확인했다.  
+  - 동영상을 url 로 가져오는데 이때 읽어오는데 시간이 좀 걸린다.  
+  ![video stream](https://user-images.githubusercontent.com/66052461/120881466-2fdf4280-c60c-11eb-8446-44ba789d7dc3.png)  
