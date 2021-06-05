@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void getVideoButtonClicked(View v){
+        Intent intent = new Intent(getApplicationContext(), GetVideoActivity.class);
+        startActivity(intent);
+    }
+
 }

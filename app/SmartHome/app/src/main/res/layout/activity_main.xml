@@ -26,4 +26,14 @@
         android:onClick="getLogButtonClicked"
         android:text="로그"/>
 
+    <Button
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:layout_margin="20dp"
+        android:onClick="getVideoButtonClicked"
+        android:text="비디오"/>
+
 </LinearLayout>

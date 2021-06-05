@@ -21,4 +21,7 @@ public interface JsonPlaceHolderApi {
 
     @GET("log") // 로그 조회
     Call<List<LogTable>> getLog();
+
+    @GET("log/{correct}") // 로그 조회
+    Call<List<LogTable>> getCorrectLog(@Path("correct") String Correct);
 }

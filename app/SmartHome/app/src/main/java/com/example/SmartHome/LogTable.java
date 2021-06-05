@@ -17,13 +17,13 @@ public class LogTable {
     private String Date;
     private String Correct;
     private String Similarity;
-    private String Image_Name;
+    private String Name;
 
-    public LogTable(String Date, String Correct, String Similarity, String Image_Name) {
+    public LogTable(String Date, String Correct, String Similarity, String Name) {
         this.Date = Date;
         this.Correct = Correct;
         this.Similarity = Similarity;
-        this.Image_Name = Image_Name;
+        this.Name = Name;
     }
 
     public String getDate() {
@@ -50,11 +50,11 @@ public class LogTable {
         Similarity = similarity;
     }
 
-    public String getImage_Name() {
-        return Image_Name;
+    public String getName() {
+        return Name;
     }
 
-    public void setImage_Name(String image_Name) {
-        Image_Name = image_Name;
+    public void setName(String name) {
+        Name = name;
     }
 }

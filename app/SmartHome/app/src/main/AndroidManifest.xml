@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dynamodb">
-        <activity android:name=".GetLogActivity"></activity>
+        <activity android:name=".GetVideoActivity"></activity>
+        <activity android:name=".GetLogActivity" />
+
         <service
             android:name=".MessagingService"
             android:exported="false">
@@ -24,6 +26,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

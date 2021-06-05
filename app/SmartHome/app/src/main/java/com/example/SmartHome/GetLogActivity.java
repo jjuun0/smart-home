@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class GetLogActivity extends AppCompatActivity {
                 .build();
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        getLog();
+//        getLog();
     }
 
     private void getLog() {
@@ -72,7 +74,7 @@ public class GetLogActivity extends AppCompatActivity {
                     tableRow.addView(correct);
 
                     TextView image_name = new TextView(getApplicationContext());
-                    image_name.setText(log.getImage_Name());
+                    image_name.setText(log.getName());
                     image_name.setGravity(Gravity.CENTER);
                     tableRow.addView(image_name);
 
@@ -88,6 +90,91 @@ public class GetLogActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<LogTable>> call, Throwable t) {
                 Log.d("Log", t.getMessage());
+            }
+        });
+    }
+
+    public void onTrueButtonClicked(View v){
+        getCorrectLog("True");
+    }
+
+    public void onFalseButtonClicked(View v){
+        getCorrectLog("False");
+    }
+
+    private void getCorrectLog(String Correct){
+        tableLayout.removeAllViews();
+
+        Call<List<LogTable>> call = jsonPlaceHolderApi.getCorrectLog(Correct);
+
+        call.enqueue(new Callback<List<LogTable>>() {
+            @Override
+            public void onResponse(Call<List<LogTable>> call, Response<List<LogTable>> response) {
+                if (!response.isSuccessful()) {
+//                    result_textview.setText("code: " + response.code());
+                    Log.d("CorrectLog", Integer.toString(response.code()));
+                    return;
+                }
+
+                List<LogTable> logs = response.body();
+                TableRow tableRow_ = new TableRow(getApplicationContext());
+                tableRow_.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                TextView correct_ = new TextView(getApplicationContext());
+                correct_.setText("Correct");
+                correct_.setGravity(Gravity.CENTER);
+                tableRow_.addView(correct_);
+
+                TextView date_ = new TextView(getApplicationContext());
+                date_.setText("Date");
+                date_.setGravity(Gravity.CENTER);
+                tableRow_.addView(date_);
+
+
+                TextView name_ = new TextView(getApplicationContext());
+                name_.setText("Name");
+                name_.setGravity(Gravity.CENTER);
+                tableRow_.addView(name_);
+
+                TextView similarity_ = new TextView(getApplicationContext());
+                similarity_.setText("Similarity");
+                similarity_.setGravity(Gravity.CENTER);
+                tableRow_.addView(similarity_);
+
+                tableLayout.addView(tableRow_);
+
+
+                for (LogTable log : logs) {
+                    TableRow tableRow = new TableRow(getApplicationContext());
+                    tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                    TextView correct = new TextView(getApplicationContext());
+                    correct.setText(log.getCorrect());
+                    correct.setGravity(Gravity.CENTER);
+                    tableRow.addView(correct);
+
+                    TextView date = new TextView(getApplicationContext());
+                    date.setText(log.getDate());
+                    date.setGravity(Gravity.CENTER);
+                    tableRow.addView(date);
+
+                    TextView image_name = new TextView(getApplicationContext());
+                    image_name.setText(log.getName());
+                    image_name.setGravity(Gravity.CENTER);
+                    tableRow.addView(image_name);
+
+                    TextView similarity = new TextView(getApplicationContext());
+                    similarity.setText(log.getSimilarity());
+                    similarity.setGravity(Gravity.CENTER);
+                    tableRow.addView(similarity);
+
+                    tableLayout.addView(tableRow);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<LogTable>> call, Throwable t) {
+                Log.d("CorrectLog", t.getMessage());
             }
         });
     }
