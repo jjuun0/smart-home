@@ -199,5 +199,9 @@
 - AWS IoT Core 를 rpi 를 등록하고, paho-mqtt 를 이용해 pub / sub 를 구축하였다.  
 - 지문인식DB 의 Correct 가 True 라고 저장되면 rpi 에서 true 값을 받도록 하였다.  
   - 후에 rpi 에서 받은 값중 Name이나 Id에 해당하는 값으로 얼굴 인식을 진행할 예정이다.  
+  ![aws_iot_rpi_connected](https://user-images.githubusercontent.com/66052461/121523190-e25e3d80-ca30-11eb-94a6-34688fa0fadf.PNG)  
+- 또한 라즈베리파이에서 캡쳐한 사진을 S3 에 업로드 하는것 까지 진행했다.  
+  ![s3](https://user-images.githubusercontent.com/66052461/121523193-e38f6a80-ca30-11eb-9fbc-0c08ffe846d5.png)  
 - DB 데이터 정리  
   ![DB](https://user-images.githubusercontent.com/66052461/121488405-04929400-ca0e-11eb-97e3-6c1d5eea0dc5.png)  
+
