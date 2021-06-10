@@ -194,3 +194,10 @@
 - s3 버킷에 동영상 하나를 업로드하여 안드로이드에서 스트리밍으로 영상을 볼 수 있는지 확인했다.  
   - 동영상을 url 로 가져오는데 이때 읽어오는데 시간이 좀 걸린다.  
   ![video stream](https://user-images.githubusercontent.com/66052461/120881466-2fdf4280-c60c-11eb-8446-44ba789d7dc3.png)  
+
+# 2021.06.10  
+- AWS IoT Core 를 rpi 를 등록하고, paho-mqtt 를 이용해 pub / sub 를 구축하였다.  
+- 지문인식DB 의 Correct 가 True 라고 저장되면 rpi 에서 true 값을 받도록 하였다.  
+  - 후에 rpi 에서 받은 값중 Name이나 Id에 해당하는 값으로 얼굴 인식을 진행할 예정이다.  
+- DB 데이터 정리  
+  ![DB](https://user-images.githubusercontent.com/66052461/121488405-04929400-ca0e-11eb-97e3-6c1d5eea0dc5.png)  
