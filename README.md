@@ -205,3 +205,10 @@
 - DB 데이터 정리  
   ![DB](https://user-images.githubusercontent.com/66052461/121488405-04929400-ca0e-11eb-97e3-6c1d5eea0dc5.png)  
 
+# 2021.06.11  
+- 라즈베리파이에서 캡쳐한 파일 이름을 'jun_2021-06-11--16-45-22.jpg' 로 저장했다. -> 이름_시간(년-월-일--시-분-초) 형식  
+- 이후에 s3/entered 폴더에 업로드가 되면 face_rekognition 함수(aws lambda)가 실행된다.  
+  - lambda : face_rekognition  
+    - s3 에 저장된 파일 이름에서 사람 이름을 가져와 source 파일경로를 알아내어 target 파일과 얼굴 비교를 한다.  
+    - 또한 결과 값을 db 에 저장했다.(시간, 이름, 일치여부, 유사도 를 저장한다.)  
+    ![db_add](https://user-images.githubusercontent.com/66052461/121651483-a4672500-cad5-11eb-9fe6-0446c3bc6da5.PNG)  
