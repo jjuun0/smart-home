@@ -40,7 +40,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AddPeopleActivity extends AppCompatActivity {
+public class AddFaceDBActivity extends AppCompatActivity {
     private String BASEURL;
     private TextView textViewResult;
     private JsonPlaceHolderApi jsonPlaceHolderApi;
@@ -97,7 +97,7 @@ public class AddPeopleActivity extends AppCompatActivity {
                 BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
                 Bitmap img = drawable.getBitmap();
 
-                file = saveBitmapToJpeg(AddPeopleActivity.this, img, nameText.getText().toString());
+                file = saveBitmapToJpeg(AddFaceDBActivity.this, img, nameText.getText().toString());
                 uploadS3(file);
             }
         });
@@ -128,13 +128,13 @@ public class AddPeopleActivity extends AppCompatActivity {
     }
 
     private void createPeople(String name) {
-        People people = new People(name, name +".jpg", "https://" + bucketName + ".s3." + region + ".amazonaws.com/" + saveFolder +"/" + name + ".jpg");
+        FaceDB faceDB = new FaceDB(name, name +".jpg", "https://" + bucketName + ".s3." + region + ".amazonaws.com/" + saveFolder +"/" + name + ".jpg");
 
-        Call<People> call = jsonPlaceHolderApi.createPeople(people);
+        Call<FaceDB> call = jsonPlaceHolderApi.createFaceDB(faceDB);
 
-        call.enqueue(new Callback<People>() {
+        call.enqueue(new Callback<FaceDB>() {
             @Override
-            public void onResponse(Call<People> call, Response<People> response) {
+            public void onResponse(Call<FaceDB> call, Response<FaceDB> response) {
 
                 if (!response.isSuccessful()) {
                     textViewResult.setText("code: " + response.code());
@@ -149,7 +149,7 @@ public class AddPeopleActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<People> call, Throwable t) {
+            public void onFailure(Call<FaceDB> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
                 Log.d("create", t.getMessage());
             }

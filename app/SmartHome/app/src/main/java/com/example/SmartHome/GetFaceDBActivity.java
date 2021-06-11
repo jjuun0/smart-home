@@ -34,14 +34,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GetPeoplesActivity extends AppCompatActivity {
+public class GetFaceDBActivity extends AppCompatActivity {
     private JsonPlaceHolderApi jsonPlaceHolderApi;
     RadioGroup people_list_view;
     private String BASEURL;
     RadioButton people_radio;
     ImageView people_image;
-    List<People> peoples;
-    People checked_people;
+    List<FaceDB> faceDBS;
+    FaceDB checked_faceDB;
     TextView result_textview;
 
     @Override
@@ -71,15 +71,15 @@ public class GetPeoplesActivity extends AppCompatActivity {
         people_list_view.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                checked_people = peoples.get(checkedId);
-                File imgFile = new  File(getApplicationContext().getFilesDir(), checked_people.getImage_Name());  // 'data/data/패키지/files' 에 이미지 저장
+                checked_faceDB = faceDBS.get(checkedId);
+                File imgFile = new  File(getApplicationContext().getFilesDir(), checked_faceDB.getImage_Name());  // 'data/data/패키지/files' 에 이미지 저장
                 if(imgFile.exists()){
                     Bitmap imgBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                     people_image.setImageBitmap(imgBitmap);
                     result_textview.setText("삭제하실 항목을 선택하여 삭제 버튼을 눌러주세요");
                 }
                 else{
-                    Toast.makeText(GetPeoplesActivity.this, "이미지 파일이 없습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(GetFaceDBActivity.this, "이미지 파일이 없습니다.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -87,7 +87,7 @@ public class GetPeoplesActivity extends AppCompatActivity {
     }
 
     public void requestAddButtonClicked(View v){
-        Intent intent = new Intent(getApplicationContext(), AddPeopleActivity.class);
+        Intent intent = new Intent(getApplicationContext(), AddFaceDBActivity.class);
         startActivity(intent);
     }
     
@@ -103,35 +103,35 @@ public class GetPeoplesActivity extends AppCompatActivity {
 
     private void getPeoples() {
         people_list_view.setVisibility(View.VISIBLE);
-        Call<List<People>> call = jsonPlaceHolderApi.getPeoples();
+        Call<List<FaceDB>> call = jsonPlaceHolderApi.getFaceDB();
 
-        call.enqueue(new Callback<List<People>>() {
+        call.enqueue(new Callback<List<FaceDB>>() {
             @Override
-            public void onResponse(Call<List<People>> call, Response<List<People>> response) {
+            public void onResponse(Call<List<FaceDB>> call, Response<List<FaceDB>> response) {
                 if (!response.isSuccessful()) {
                     result_textview.setText("code: " + response.code());
                     return;
                 }
 
-                peoples = response.body();
+                faceDBS = response.body();
 
                 people_list_view.removeAllViews();
 
-                for (People people : peoples) {
+                for (FaceDB faceDB : faceDBS) {
                     // https://blog.daum.net/andro_java/1212 radio button 동적으로 추가
                     RadioButton people_radio_button = new RadioButton(getApplicationContext());
-                    people_radio_button.setText(people.getName());
+                    people_radio_button.setText(faceDB.getName());
                     people_radio_button.setTextColor(getResources().getColor(R.color.black));
-                    people_radio_button.setId(peoples.indexOf(people));
+                    people_radio_button.setId(faceDBS.indexOf(faceDB));
                     RadioGroup.LayoutParams rprms= new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
                     people_list_view.addView(people_radio_button, rprms);
-                    downloadS3(people.getImage_Name());
+                    downloadS3(faceDB.getImage_Name());
 
                 }
             }
 
             @Override
-            public void onFailure(Call<List<People>> call, Throwable t) {
+            public void onFailure(Call<List<FaceDB>> call, Throwable t) {
                 Log.d("getpeoples", t.getMessage());
             }
         });
@@ -183,11 +183,11 @@ public class GetPeoplesActivity extends AppCompatActivity {
     }
 
     private void deletePeople(){
-        Call<People> call = jsonPlaceHolderApi.deletePeople(checked_people.getName());
+        Call<FaceDB> call = jsonPlaceHolderApi.deleteFaceDB(checked_faceDB.getName());
 
-        call.enqueue(new Callback<People>() {
+        call.enqueue(new Callback<FaceDB>() {
             @Override
-            public void onResponse(Call<People> call, Response<People> response) {
+            public void onResponse(Call<FaceDB> call, Response<FaceDB> response) {
 
                 if (!response.isSuccessful()) {
                     result_textview.setText("error code: " + response.code());
@@ -206,7 +206,7 @@ public class GetPeoplesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<People> call, Throwable t) {
+            public void onFailure(Call<FaceDB> call, Throwable t) {
                 result_textview.setText(t.getMessage());
                 Log.d("delete onFailure", t.getMessage());
             }

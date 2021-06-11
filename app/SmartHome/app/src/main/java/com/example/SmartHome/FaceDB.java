@@ -1,6 +1,6 @@
 package com.example.SmartHome;
 
-public class People {
+public class FaceDB {
     /**
      * [
      *   {
@@ -20,7 +20,7 @@ public class People {
     // https://nobase-dev.tistory.com/6
     // https://relz.tistory.com/15
 
-    public People(String Name, String Image_Name, String Image_url) {
+    public FaceDB(String Name, String Image_Name, String Image_url) {
         this.Name = Name;
         this.Image_Name = Image_Name;
         this.Image_url = Image_url;

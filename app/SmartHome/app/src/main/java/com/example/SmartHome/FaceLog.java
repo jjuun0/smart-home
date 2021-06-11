@@ -1,6 +1,6 @@
 package com.example.SmartHome;
 
-public class LogTable {
+public class FaceLog {
 
     /**
      * [
@@ -19,7 +19,7 @@ public class LogTable {
     private String Similarity;
     private String Name;
 
-    public LogTable(String Date, String Correct, String Similarity, String Name) {
+    public FaceLog(String Date, String Correct, String Similarity, String Name) {
         this.Date = Date;
         this.Correct = Correct;
         this.Similarity = Similarity;

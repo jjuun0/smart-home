@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GetLogActivity extends AppCompatActivity {
+public class GetFaceLogActivity extends AppCompatActivity {
     private JsonPlaceHolderApi jsonPlaceHolderApi;
     private String BASEURL;
     TableLayout tableLayout;
@@ -46,20 +45,20 @@ public class GetLogActivity extends AppCompatActivity {
 
     private void getLog() {
         // https://1d1cblog.tistory.com/140 table layout 사용하기
-        Call<List<LogTable>> call = jsonPlaceHolderApi.getLog();
+        Call<List<FaceLog>> call = jsonPlaceHolderApi.getFaceLog();
 
-        call.enqueue(new Callback<List<LogTable>>() {
+        call.enqueue(new Callback<List<FaceLog>>() {
             @Override
-            public void onResponse(Call<List<LogTable>> call, Response<List<LogTable>> response) {
+            public void onResponse(Call<List<FaceLog>> call, Response<List<FaceLog>> response) {
                 if (!response.isSuccessful()) {
 //                    result_textview.setText("code: " + response.code());
                     Log.d("Log", Integer.toString(response.code()));
                     return;
                 }
 
-                List<LogTable> logs = response.body();
+                List<FaceLog> logs = response.body();
 
-                for (LogTable log : logs) {
+                for (FaceLog log : logs) {
                     TableRow tableRow = new TableRow(getApplicationContext());
                     tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -88,7 +87,7 @@ public class GetLogActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<LogTable>> call, Throwable t) {
+            public void onFailure(Call<List<FaceLog>> call, Throwable t) {
                 Log.d("Log", t.getMessage());
             }
         });
@@ -105,18 +104,18 @@ public class GetLogActivity extends AppCompatActivity {
     private void getCorrectLog(String Correct){
         tableLayout.removeAllViews();
 
-        Call<List<LogTable>> call = jsonPlaceHolderApi.getCorrectLog(Correct);
+        Call<List<FaceLog>> call = jsonPlaceHolderApi.getFaceCorrectLog(Correct);
 
-        call.enqueue(new Callback<List<LogTable>>() {
+        call.enqueue(new Callback<List<FaceLog>>() {
             @Override
-            public void onResponse(Call<List<LogTable>> call, Response<List<LogTable>> response) {
+            public void onResponse(Call<List<FaceLog>> call, Response<List<FaceLog>> response) {
                 if (!response.isSuccessful()) {
 //                    result_textview.setText("code: " + response.code());
                     Log.d("CorrectLog", Integer.toString(response.code()));
                     return;
                 }
 
-                List<LogTable> logs = response.body();
+                List<FaceLog> logs = response.body();
                 TableRow tableRow_ = new TableRow(getApplicationContext());
                 tableRow_.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -144,7 +143,7 @@ public class GetLogActivity extends AppCompatActivity {
                 tableLayout.addView(tableRow_);
 
 
-                for (LogTable log : logs) {
+                for (FaceLog log : logs) {
                     TableRow tableRow = new TableRow(getApplicationContext());
                     tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -173,7 +172,7 @@ public class GetLogActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<LogTable>> call, Throwable t) {
+            public void onFailure(Call<List<FaceLog>> call, Throwable t) {
                 Log.d("CorrectLog", t.getMessage());
             }
         });
