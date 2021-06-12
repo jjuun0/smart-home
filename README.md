@@ -212,3 +212,14 @@
     - s3 에 저장된 파일 이름에서 사람 이름을 가져와 source 파일경로를 알아내어 target 파일과 얼굴 비교를 한다.  
     - 또한 결과 값을 db 에 저장했다.(시간, 이름, 일치여부, 유사도 를 저장한다.)  
     ![db_add](https://user-images.githubusercontent.com/66052461/121651483-a4672500-cad5-11eb-9fe6-0446c3bc6da5.PNG)  
+    
+# 2021.06.12  
+-  Arduino MKR WiFi 1010 과 AWS IoT Core 에 연결하여 값을 서로 주고 받음.  
+  - 아두이노 : "arduino/incoming" 구독중, AWS : "arduino/outgoing" 구독중인 상태  
+  - aws 에서 "arduino/incoming" 주제로 아래와 같이 요청을 보냄  
+    ![aws_iot_request_led_state](https://user-images.githubusercontent.com/66052461/121765752-3c254b80-cb88-11eb-805d-bef33c456324.png)  
+  - 아두이노의 serial monitor 에서 payload 를 확인  
+    ![arduino_aws_iot_connect_2](https://user-images.githubusercontent.com/66052461/121765751-3c254b80-cb88-11eb-9984-f9af98926ac9.png)  
+  - 아두이노는 "arduino/incoming" 주제를 구독중이므로 aws 에서 보낸 payload 를 decode 해서 led state 를 변경함. (OFF -> ON)  
+  - 또한 "arduino/outgoing" 주제에 led state 를 보냄. -> aws 는 "arduino/outgoing" 를 구독중이므로 아래와 같이 아두이노 에서 보낸 payload 를 읽을수 있다.  
+    ![arduino_aws_iot_connect_1](https://user-images.githubusercontent.com/66052461/121765750-3af41e80-cb88-11eb-9743-704c1f04dd5e.png)  
