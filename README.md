@@ -223,3 +223,11 @@
   - 아두이노는 "arduino/incoming" 주제를 구독중이므로 aws 에서 보낸 payload 를 decode 해서 led state 를 변경함. (OFF -> ON)  
   - 또한 "arduino/outgoing" 주제에 led state 를 보냄. -> aws 는 "arduino/outgoing" 를 구독중이므로 아래와 같이 아두이노 에서 보낸 payload 를 읽을수 있다.  
     ![arduino_aws_iot_connect_1](https://user-images.githubusercontent.com/66052461/121765750-3af41e80-cb88-11eb-9743-704c1f04dd5e.png)  
+
+# 2021.06.17-18  
+- 아두이노의 지문인식 센서를 활용하여 데이터를 보냄.(json 형식으로 바꿔서)      
+  ![mqtt_fingerprint_1](https://user-images.githubusercontent.com/66052461/122499846-990f7e80-d02c-11eb-94b2-4d7e167d8596.png)  
+- 지문인식 결과 에러 값인 1. 지문이 인식되지 않았다는 에러 2. Unknown error 일 경우는 데이터 전송을 하지 않는다.    
+  ![mqtt_fingerprint_2](https://user-images.githubusercontent.com/66052461/122499848-99a81500-d02c-11eb-928d-a96a323d63ec.png)  
+
+
