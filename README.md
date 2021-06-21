@@ -230,4 +230,10 @@
 - 지문인식 결과 에러 값인 1. 지문이 인식되지 않았다는 에러 2. Unknown error 일 경우는 데이터 전송을 하지 않는다.    
   ![mqtt_fingerprint_2](https://user-images.githubusercontent.com/66052461/122499848-99a81500-d02c-11eb-928d-a96a323d63ec.png)  
 
-
+# 2021.06.21  
+- Date 항목을 추가함(WiFi.getTime() 함수를 이용)  
+- aws iot 규칙을 만들어서(AddFingerPrintLogRule) FingerPrintLog 에 기록하게함.  
+  - lambda 함수(AddFingerPrintLog)  
+    - 아두이노에서 'arduino/outgoing' 주제로 지문인식 결과(json 형태)를 보낸다.  
+    - 이 payload 를 Correct, Date, Confidence, ID, Message 로 나누어서 기록함.    
+  ![add_fingerprintlog_db](https://user-images.githubusercontent.com/66052461/122713134-2c041f00-d2a0-11eb-98ed-55db51a480e8.png)  
