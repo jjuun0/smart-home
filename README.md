@@ -237,3 +237,18 @@
     - 아두이노에서 'arduino/outgoing' 주제로 지문인식 결과(json 형태)를 보낸다.  
     - 이 payload 를 Correct, Date, Confidence, ID, Message 로 나누어서 기록함.    
   ![add_fingerprintlog_db](https://user-images.githubusercontent.com/66052461/122713134-2c041f00-d2a0-11eb-98ed-55db51a480e8.png)  
+  
+# 2021.06.22  
+- FingerPrint 등록 과정 수행  
+  - 아두이노 시리얼 모니터에서 이름을 입력 받음 -> FingerPrint 에 있는지 체크함. 있으면 종료 없다면 DB 에 저장  
+    - 'arduino/fingerprint/enroll' 주제로 이름을 보내고 lambda 함수 내에서 DB 에 query 로 같은 이름이 있는지 체크함.  
+    ![arduino_fingerprint_enroll____topic](https://user-images.githubusercontent.com/66052461/122866440-e65c5a80-d362-11eb-93fc-09d12e06d604.png)  
+    - 'aws/fingerprint/enroll' 주제로 같은 이름이 있다면 등록 거부, 이름이 없다면 등록 허가 payload 를 보냄.  
+    ![image](https://user-images.githubusercontent.com/66052461/122866770-7d291700-d363-11eb-81d0-203a8bbd8ddb.png)  
+    - 아두이노에서 등록 허가 된다면 지문을 등록함.  
+    - 성공적으로 지문이 등록 된다면 DB 에 등록하라고 'arduino/fingerprint/db' 주제로 이름과 ID 값을 보냄.  
+    ![arduino_fingerprint_db____topic](https://user-images.githubusercontent.com/66052461/122866446-e8261e00-d362-11eb-97cb-4e33015a6a02.png)  
+  - 성공적으로 등록이 된 시리얼 모니터 화면  
+  ![serial monitor_enroll_success png](https://user-images.githubusercontent.com/66052461/122866179-7fd73c80-d362-11eb-85be-99fc497e34f1.jpg)  
+  - 실패 : 이미 이름이 등록된 경우  
+  ![serial monitor_enroll_fail](https://user-images.githubusercontent.com/66052461/122866196-85cd1d80-d362-11eb-9556-5812b7f3323d.png)  
