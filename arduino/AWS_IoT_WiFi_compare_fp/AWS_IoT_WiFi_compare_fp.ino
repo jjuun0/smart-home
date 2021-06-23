@@ -25,6 +25,7 @@
 #include <ArduinoMqttClient.h>
 #include <WiFiNINA.h> // change to #include <WiFi101.h> for MKR1000
 
+#include <time.h>
 #include <ArduinoJson.h>
 
 #include "arduino_secrets.h"
@@ -124,17 +125,17 @@ void setup() {
 }
 
 void loop() {
-    if (WiFi.status() != WL_CONNECTED) {
-      connectWiFi();
-    }
-  
-    if (!mqttClient.connected()) {
-      // MQTT client is disconnected, connect
-      connectMQTT();
-    }
-  
-    // poll for new MQTT messages and send keep alives
-    mqttClient.poll();
+  if (WiFi.status() != WL_CONNECTED) {
+    connectWiFi();
+  }
+
+  if (!mqttClient.connected()) {
+    // MQTT client is disconnected, connect
+    connectMQTT();
+  }
+
+  // poll for new MQTT messages and send keep alives
+  mqttClient.poll();
 
   //  // publish a message roughly every 5 seconds.
   //  if (millis() - lastMillis > 5000) {
@@ -142,6 +143,13 @@ void loop() {
   //
   //    publishMessage();
   //  }
+//  char str[100];
+//  time_t rawtime = getTime() + 32400;
+//  struct tm * timeinfo;
+//  timeinfo = localtime(&rawtime);
+//  Serial.println(strftime(str, 100, "%Y-%m-%d %H:%M:%S", timeinfo));
+
+  Serial.println(get_current_time());
 
   //  result_id = getFingerprintIDez();
   result_doc = getFingerprintJson(finger);
@@ -164,6 +172,20 @@ void loop() {
 unsigned long getTime() {
   // get the current time from the WiFi module
   return WiFi.getTime();
+}
+
+String get_current_time()
+{
+  time_t rawtime = getTime() + 32400; // + 9시간(한국)
+  struct tm * timeinfo;
+
+//  time ( &rawtime );
+  timeinfo = localtime ( &rawtime );
+
+  char output[30];
+  strftime(output, 30, "%Y-%m-%d %H:%M:%S", timeinfo);
+
+  return String(output);
 }
 
 void connectWiFi() {
@@ -207,10 +229,10 @@ void publishMessage(StaticJsonDocument<150> doc) {
   // send message, the Print interface can be used to set the message contents
   mqttClient.beginMessage("arduino/outgoing");
 
-  char msg[100];
+  char msg[150];
   //  StaticJsonDocument<100> doc;
 
-  //  doc["LED"] = led_state;
+  doc["Date"] = get_current_time();
 
   //  strcpy(msg, doc);
   serializeJson(doc, msg);

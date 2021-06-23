@@ -167,80 +167,80 @@ char char_msg[200];
 
 char* getFingerprintJson(Adafruit_Fingerprint finger) {
   uint8_t p = finger.getImage();
-  boolean correct = false;
+  String correct = "False";
   String msg = "";
   switch (p) {
     case FINGERPRINT_OK:
       //      msg = "Image taken";
-      correct = true;
+      correct = "True";
       break;
 
     case FINGERPRINT_NOFINGER:
       msg = "No finger detected";
-      correct = false;
+      correct = "False";
     case FINGERPRINT_PACKETRECIEVEERR:
       msg = "Communication error";
-      correct = false;
+      correct = "False";
     case FINGERPRINT_IMAGEFAIL:
       msg = "Imaging error";
-      correct = false;
+      correct = "False";
     default:
       msg = "Unknown error";
-      correct = false;
+      correct = "False";
   }
 
-//  Serial.println(msg);
+  //  Serial.println(msg);
 
-  if (correct == true) {
+  if (correct == "True") {
     p = finger.image2Tz();
     switch (p) {
       case FINGERPRINT_OK:
         //      msg = "Image converted";
-        correct == true;
+        correct == "True";
         break;
 
       case FINGERPRINT_IMAGEMESS:
         msg = "Image too messy";
-        correct = false;
+        correct = "False";
       case FINGERPRINT_PACKETRECIEVEERR:
         msg = "Communication error";
-        correct = false;
+        correct = "False";
       case FINGERPRINT_FEATUREFAIL:
         msg = "Could not find fingerprint features";
-        correct = false;
+        correct = "False";
       case FINGERPRINT_INVALIDIMAGE:
         msg = "Could not find fingerprint features";
-        correct = false;
+        correct = "False";
       default:
         msg = "Unknown error";
-        correct = false;
+        correct = "False";
     }
   }
 
-//  Serial.println(msg);
+  //  Serial.println(msg);
 
-  if (correct == true) {
+  if (correct == "True") {
     p = finger.fingerSearch();
     if (p == FINGERPRINT_OK) {
       msg = "Found a print match!";
-      correct = true;
+      correct = "True";
     } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
       msg = "Communication error";
-      correct = false;
+      correct = "False";
     } else if (p == FINGERPRINT_NOTFOUND) {
       msg = "Did not find a match";
-      correct = false;
+      correct = "False";
     } else {
       msg = "Unknown error";
-      correct = false;
+      correct = "False";
     }
   }
 
-//  Serial.println(msg);
+  //  Serial.println(msg);
 
   StaticJsonDocument<150> doc;
 
-  if (correct == true) {
+  if (correct == "True") {
     doc["Correct"] = correct;
     doc["ID"] = finger.fingerID;
     doc["Confidence"] = finger.confidence;
@@ -249,14 +249,16 @@ char* getFingerprintJson(Adafruit_Fingerprint finger) {
 
   else {
     doc["Correct"] = correct;
+    doc["ID"] = -1;
+    doc["Confidence"] = -1;
     doc["Message"] = msg;
   }
 
 
   // found a match!
-//  Serial.print("Found ID #"); Serial.print(finger.fingerID);
-//  Serial.print(" with confidence of "); Serial.println(finger.confidence);
+  //  Serial.print("Found ID #"); Serial.print(finger.fingerID);
+  //  Serial.print(" with confidence of "); Serial.println(finger.confidence);
   serializeJson(doc, char_msg);
-//  Serial.println(char_msg);
+  //  Serial.println(char_msg);
   return char_msg;
 }
