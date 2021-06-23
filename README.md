@@ -252,3 +252,12 @@
   ![serial monitor_enroll_success png](https://user-images.githubusercontent.com/66052461/122866179-7fd73c80-d362-11eb-85be-99fc497e34f1.jpg)  
   - 실패 : 이미 이름이 등록된 경우  
   ![serial monitor_enroll_fail](https://user-images.githubusercontent.com/66052461/122866196-85cd1d80-d362-11eb-9556-5812b7f3323d.png)  
+  
+# 2021.06.23  
+- FingerPrint 등록 과정 수정 : id 값을 사용자가 입력하는 방식으로 수정  
+  - id, name 을 입력받고 DB 에서 조회를 하여 일치하는 값이 없다면 등록 허가  
+  - id 값이 이미 DB 에 존재하는 경우  
+  ![existed_id](https://user-images.githubusercontent.com/66052461/123077320-e9d00e80-d454-11eb-9cb0-f732cd709917.png)  
+  - name 값이 이미 DB 에 존재하는 경우  
+  ![existed_name](https://user-images.githubusercontent.com/66052461/123077323-ea68a500-d454-11eb-9ba1-fc01ead834f6.png)  
+
