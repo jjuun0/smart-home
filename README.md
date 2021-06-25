@@ -261,3 +261,22 @@
   - name 값이 이미 DB 에 존재하는 경우  
   ![existed_name](https://user-images.githubusercontent.com/66052461/123077323-ea68a500-d454-11eb-9ba1-fc01ead834f6.png)  
 
+# 2021.06.25  
+- publish 하는 public(주제 수정) + 지문 삭제 구현
+  - 등록   
+    - arduino/fingerprint/db/scan : 아두이노가 aws DB 에서 id, name 정보 조회하라고 publish 하는 주제  
+    - aws/fingerprint/db/scan : aws 가 DB 에서 조회 결과를 아두이노에게 알려주는 주제  
+    - arduino/fingerprint/db/enroll : 아두이노에서 지문등록이 완료가 되어 aws DB 에 id, name 을 등록하라고 publish 하는 주제  
+    
+  - 삭제 : 시리얼 모니터에서 사용자가 id, name 을 입력하면 DB 에서 조회를 하고 데이터가 존재한다면 아두이노 지문과 aws DB 데이터를 삭제한다.  
+    - arduino/fingerprint/db/scan : 아두이노가 aws DB 에서 id, name 정보 조회하라고 publish 하는 주제   
+    ![delete_1](https://user-images.githubusercontent.com/66052461/123407611-1caa0c00-d5e7-11eb-968b-6bee230c2c62.png)  
+    - aws/fingerprint/db/scan : aws 가 DB 에서 조회 결과를 아두이노에게 알려주는 주제  
+    ![delete_2](https://user-images.githubusercontent.com/66052461/123407615-1d42a280-d5e7-11eb-876f-fff0aa8c9092.png)  
+    - arduino/fingerprint/db/delete : 아두이노에서 지문삭제가 완료가 되어 aws DB 에도 삭제하라고 publish 하는 주제  
+    ![delete_3](https://user-images.githubusercontent.com/66052461/123407617-1ddb3900-d5e7-11eb-9f27-efaa0d744bdd.png)  
+
+- 또한 람다 함수도 수정 : scan lambda 에서 등록, 삭제 과정에서 서로 리턴해주는 정보가 달라서 현재 과정이 어떤 과정인지 알려주는것을 추가.
+  - "Process" : "Enroll" or "Delete"
+  
+
