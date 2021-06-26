@@ -40,57 +40,7 @@ public class GetFaceLogActivity extends AppCompatActivity {
                 .build();
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-//        getLog();
-    }
 
-    private void getLog() {
-        // https://1d1cblog.tistory.com/140 table layout 사용하기
-        Call<List<FaceLog>> call = jsonPlaceHolderApi.getFaceLog();
-
-        call.enqueue(new Callback<List<FaceLog>>() {
-            @Override
-            public void onResponse(Call<List<FaceLog>> call, Response<List<FaceLog>> response) {
-                if (!response.isSuccessful()) {
-//                    result_textview.setText("code: " + response.code());
-                    Log.d("Log", Integer.toString(response.code()));
-                    return;
-                }
-
-                List<FaceLog> logs = response.body();
-
-                for (FaceLog log : logs) {
-                    TableRow tableRow = new TableRow(getApplicationContext());
-                    tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-                    TextView date = new TextView(getApplicationContext());
-                    date.setText(log.getDate());
-                    date.setGravity(Gravity.CENTER);
-                    tableRow.addView(date);
-
-                    TextView correct = new TextView(getApplicationContext());
-                    correct.setText(log.getCorrect());
-                    correct.setGravity(Gravity.CENTER);
-                    tableRow.addView(correct);
-
-                    TextView image_name = new TextView(getApplicationContext());
-                    image_name.setText(log.getName());
-                    image_name.setGravity(Gravity.CENTER);
-                    tableRow.addView(image_name);
-
-                    TextView similarity = new TextView(getApplicationContext());
-                    similarity.setText(log.getSimilarity());
-                    similarity.setGravity(Gravity.CENTER);
-                    tableRow.addView(similarity);
-
-                    tableLayout.addView(tableRow);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<FaceLog>> call, Throwable t) {
-                Log.d("Log", t.getMessage());
-            }
-        });
     }
 
     public void onTrueButtonClicked(View v){
@@ -101,10 +51,20 @@ public class GetFaceLogActivity extends AppCompatActivity {
         getCorrectLog("False");
     }
 
-    private void getCorrectLog(String Correct){
+    public void addItemOnRow(TableLayout tableLayout, TableRow tableRow, String[] list) {
+        for (int i = 0; i < list.length; i++) {
+            TextView textView = new TextView(getApplicationContext());
+            textView.setText(list[i]);
+            textView.setGravity(Gravity.CENTER);
+            tableRow.addView(textView);
+        }
+        tableLayout.addView(tableRow);
+    }
+
+    private void getCorrectLog(String correct){
         tableLayout.removeAllViews();
 
-        Call<List<FaceLog>> call = jsonPlaceHolderApi.getFaceCorrectLog(Correct);
+        Call<List<FaceLog>> call = jsonPlaceHolderApi.getFaceCorrectLog(correct);
 
         call.enqueue(new Callback<List<FaceLog>>() {
             @Override
@@ -116,58 +76,35 @@ public class GetFaceLogActivity extends AppCompatActivity {
                 }
 
                 List<FaceLog> logs = response.body();
-                TableRow tableRow_ = new TableRow(getApplicationContext());
-                tableRow_.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                TableRow init_tableRow = new TableRow(getApplicationContext());
+                init_tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-                TextView correct_ = new TextView(getApplicationContext());
-                correct_.setText("Correct");
-                correct_.setGravity(Gravity.CENTER);
-                tableRow_.addView(correct_);
+                if (correct.equals("True")) {
+                    String[] rows = {"Correct", "Date", "Name", "Similarity"};
+                    addItemOnRow(tableLayout, init_tableRow, rows);
 
-                TextView date_ = new TextView(getApplicationContext());
-                date_.setText("Date");
-                date_.setGravity(Gravity.CENTER);
-                tableRow_.addView(date_);
+                    for (FaceLog log : logs) {
+                        String[] log_contents = {log.getCorrect(), log.getDate(), log.getName(), log.getSimilarity()};
 
+                        TableRow tableRow = new TableRow(getApplicationContext());
+                        tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-                TextView name_ = new TextView(getApplicationContext());
-                name_.setText("Name");
-                name_.setGravity(Gravity.CENTER);
-                tableRow_.addView(name_);
+                        addItemOnRow(tableLayout, tableRow, log_contents);
+                    }
+                }
 
-                TextView similarity_ = new TextView(getApplicationContext());
-                similarity_.setText("Similarity");
-                similarity_.setGravity(Gravity.CENTER);
-                tableRow_.addView(similarity_);
+                else {
+                    String[] rows = {"Correct", "Date"};
+                    addItemOnRow(tableLayout, init_tableRow, rows);
 
-                tableLayout.addView(tableRow_);
+                    for (FaceLog log : logs) {
+                        String[] log_contents = {log.getCorrect(), log.getDate()};
 
+                        TableRow tableRow = new TableRow(getApplicationContext());
+                        tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-                for (FaceLog log : logs) {
-                    TableRow tableRow = new TableRow(getApplicationContext());
-                    tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-                    TextView correct = new TextView(getApplicationContext());
-                    correct.setText(log.getCorrect());
-                    correct.setGravity(Gravity.CENTER);
-                    tableRow.addView(correct);
-
-                    TextView date = new TextView(getApplicationContext());
-                    date.setText(log.getDate());
-                    date.setGravity(Gravity.CENTER);
-                    tableRow.addView(date);
-
-                    TextView image_name = new TextView(getApplicationContext());
-                    image_name.setText(log.getName());
-                    image_name.setGravity(Gravity.CENTER);
-                    tableRow.addView(image_name);
-
-                    TextView similarity = new TextView(getApplicationContext());
-                    similarity.setText(log.getSimilarity());
-                    similarity.setGravity(Gravity.CENTER);
-                    tableRow.addView(similarity);
-
-                    tableLayout.addView(tableRow);
+                        addItemOnRow(tableLayout, tableRow, log_contents);
+                    }
                 }
             }
 

@@ -15,12 +15,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getButtonClicked(View v){
-        Intent intent = new Intent(getApplicationContext(), GetPeoplesActivity.class);
+        Intent intent = new Intent(getApplicationContext(), GetFaceDBActivity.class);
         startActivity(intent);
     }
 
     public void getLogButtonClicked(View v){
-        Intent intent = new Intent(getApplicationContext(), GetLogActivity.class);
+        Intent intent = new Intent(getApplicationContext(), GetFaceLogActivity.class);
         startActivity(intent);
     }
 
@@ -28,5 +28,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), GetVideoActivity.class);
         startActivity(intent);
     }
+
+    public void getFingerPrintClicked(View v){
+        Intent intent = new Intent(getApplicationContext(), GetFingerPrintDBActivity.class);
+        startActivity(intent);
+    }
+
 
 }

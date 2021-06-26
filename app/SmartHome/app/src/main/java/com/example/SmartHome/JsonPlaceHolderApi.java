@@ -11,17 +11,25 @@ import retrofit2.http.Path;
 
 public interface JsonPlaceHolderApi {
     @GET("people")  // allow data 조회
-    Call<List<People>> getPeoples();  // HTTP 요청을 웹서버로 보낸다
+    Call<List<FaceDB>> getFaceDB();  // HTTP 요청을 웹서버로 보낸다
 
     @POST("people")  // 항목 추가
-    Call<People> createPeople(@Body People people);
+    Call<FaceDB> createFaceDB(@Body FaceDB faceDB);
 
     @DELETE("people/{Name}/delete")  // 항목 삭제
-    Call<People> deletePeople(@Path("Name") String Name);
+    Call<FaceDB> deleteFaceDB(@Path("Name") String Name);
 
     @GET("log") // 로그 조회
-    Call<List<LogTable>> getLog();
+    Call<List<FaceLog>> getFaceLog();
 
     @GET("log/{correct}") // 로그 조회
-    Call<List<LogTable>> getCorrectLog(@Path("correct") String Correct);
+    Call<List<FaceLog>> getFaceCorrectLog(@Path("correct") String Correct);
+
+    @GET("fingerprint") // 로그 조회
+    Call<List<FingerPrintDB>> getFingerPrintDB();
+
+    @GET("fingerprint/log/{correct}") // 로그 조회
+    Call<List<FingerPrintLog>> getFingerPrintLog(@Path("correct") String Correct);
+
+
 }
