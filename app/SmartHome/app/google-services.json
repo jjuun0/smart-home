@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "516284865780",
-    "project_id": "pushnotification-d2530",
-    "storage_bucket": "pushnotification-d2530.appspot.com"
+    "project_number": "101571208471",
+    "project_id": "notificationtest-447df",
+    "storage_bucket": "notificationtest-447df.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:516284865780:android:67ee5cf2001e557650d2a1",
+        "mobilesdk_app_id": "1:101571208471:android:84c46d43924aa707b9c352",
         "android_client_info": {
           "package_name": "com.example.SmartHome"
         }
       },
       "oauth_client": [
         {
-          "client_id": "516284865780-ogelapcj61sjp8ght86k7jmkt988mn2u.apps.googleusercontent.com",
+          "client_id": "101571208471-4m63cfi0tam5fi37r4mri9p2ua646egk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD26D-mDIl4jGBbWb6ydnQs4Ym07YFmvnQ"
+          "current_key": "AIzaSyAWChawuJYObd1F0QfJieE-q4jADAKVUNs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "516284865780-ogelapcj61sjp8ght86k7jmkt988mn2u.apps.googleusercontent.com",
+              "client_id": "101571208471-4m63cfi0tam5fi37r4mri9p2ua646egk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

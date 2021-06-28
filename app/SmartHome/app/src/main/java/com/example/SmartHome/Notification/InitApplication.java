@@ -1,4 +1,4 @@
-package com.example.SmartHome;
+package com.example.SmartHome.Notification;
 
 import android.app.Application;
 import android.app.NotificationChannel;
@@ -7,6 +7,7 @@ import android.content.Context;
 import android.os.Build;
 import android.widget.Toast;
 
+import com.example.SmartHome.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -40,16 +41,16 @@ public class InitApplication extends Application {
                 notificationChannel.enableVibration(true);
                 notificationManager.createNotificationChannel(notificationChannel);
             }
-//            FirebaseMessaging.getInstance().subscribeToTopic("custom").addOnSuccessListener(new OnSuccessListener<Void>() {
+//            FirebaseMessaging.getInstance().subscribeToTopic("FingerPrintLog").addOnSuccessListener(new OnSuccessListener<Void>() {
 //                @Override
 //                public void onSuccess(Void aVoid) {
-//                    Toast.makeText(getApplicationContext(),"custom topic 구독",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(),"지문인식로그 구독",Toast.LENGTH_SHORT).show();
 //                }
 //            });
             FirebaseMessaging.getInstance().subscribeToTopic("notify").addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(getApplicationContext(),"notify topic 구독",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"알림 구독",Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (NullPointerException nullException) {

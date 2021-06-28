@@ -1,4 +1,4 @@
-package com.example.SmartHome;
+package com.example.SmartHome.FingerPrint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.example.SmartHome.JsonPlaceHolderApi;
+import com.example.SmartHome.R;
 
 import java.util.List;
 
@@ -30,7 +33,7 @@ public class GetFingerPrintDBActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_finger_print_d_b);
+        setContentView(R.layout.activity_get_finger_print_db);
 
         BASEURL = getString(R.string.request_url);
 
@@ -39,7 +42,7 @@ public class GetFingerPrintDBActivity extends AppCompatActivity {
 
         Retrofit retrofit = new Retrofit.Builder()  // retrofit 객체 선언
                 .baseUrl(BASEURL)
-                .addConverterFactory(new NullOnEmptyConverterFactory())
+//                .addConverterFactory(new NullOnEmptyConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())  // gson converter 생성, gson 는 json 을 자바 클래스로 바꾸는데 사용
                 .build();
 

@@ -1,4 +1,4 @@
-package com.example.SmartHome;
+package com.example.SmartHome.Notification;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.SmartHome.MainActivity;
+import com.example.SmartHome.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

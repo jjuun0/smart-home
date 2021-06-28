@@ -1,4 +1,4 @@
-package com.example.SmartHome;
+package com.example.SmartHome.Face;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +24,8 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.example.SmartHome.JsonPlaceHolderApi;
+import com.example.SmartHome.R;
 
 import java.io.File;
 import java.util.List;
@@ -47,7 +49,7 @@ public class GetFaceDBActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_peoples);
+        setContentView(R.layout.activity_get_face_db);
 
         BASEURL = getString(R.string.request_url);
 
@@ -61,11 +63,13 @@ public class GetFaceDBActivity extends AppCompatActivity {
 
         Retrofit retrofit = new Retrofit.Builder()  // retrofit 객체 선언
                 .baseUrl(BASEURL)
-                .addConverterFactory(new NullOnEmptyConverterFactory())
+//                .addConverterFactory(new NullOnEmptyConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())  // gson converter 생성, gson 는 json 을 자바 클래스로 바꾸는데 사용
                 .build();
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+
 
         // http://blog.naver.com/PostView.nhn?blogId=kimsh2244&logNo=221070877167 change image by checked radio button
         people_list_view.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -90,10 +94,10 @@ public class GetFaceDBActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AddFaceDBActivity.class);
         startActivity(intent);
     }
-    
-    public void onBackButtonClicked(View v){
-        Toast.makeText(getApplicationContext(), "돌아가기 버튼을 눌렀습니다.", Toast.LENGTH_LONG);
-        finish();
+
+    public void requestLogButtonClicked(View v){
+        Intent intent = new Intent(getApplicationContext(), GetFaceLogActivity.class);
+        startActivity(intent);
     }
 
     public void requestGetButtonClicked(View v){

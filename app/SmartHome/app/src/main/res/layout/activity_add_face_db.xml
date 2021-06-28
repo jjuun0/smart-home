@@ -3,34 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
+    android:layout_height="match_parent"
+    android:gravity="center"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".AddFaceDBActivity">>
+    tools:context=".Face.AddFaceDBActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="아래를 터치해서 등록할 사진을 선택하세요" />
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="400dp"
         android:layout_height="200dp"
+        android:layout_marginTop="30dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <EditText
         android:id="@+id/setname"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         android:ems="10"
-        android:layout_margin="30dp"
         android:gravity="center"
-        android:inputType="textPersonName"
-        android:hint="이름을 입력하세요"/>
+        android:hint="등록할 이름을 입력하세요"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/save_button"
-        android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:text="추가" />
 
     <TextView

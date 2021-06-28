@@ -4,47 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <Button
-        android:id="@+id/get_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_margin="20dp"
-        android:onClick="getButtonClicked"
-        android:text="관리"/>
-
-    <Button
-        android:id="@+id/log"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_margin="20dp"
-        android:onClick="getLogButtonClicked"
-        android:text="로그"/>
-
-    <Button
-        android:id="@+id/video"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_margin="20dp"
-        android:onClick="getVideoButtonClicked"
-        android:text="비디오"/>
 
     <Button
         android:id="@+id/fingerprint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
         android:layout_margin="20dp"
+        android:layout_weight="1"
         android:onClick="getFingerPrintClicked"
-        android:text="지문"/>
+        android:text="지문" />
+
+    <Button
+        android:id="@+id/get_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:onClick="getButtonClicked"
+        android:text="얼굴" />
+
+    <Button
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:onClick="getVideoButtonClicked"
+        android:text="비디오" />
+
 
 </LinearLayout>

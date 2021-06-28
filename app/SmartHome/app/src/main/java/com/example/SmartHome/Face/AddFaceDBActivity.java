@@ -1,4 +1,4 @@
-package com.example.SmartHome;
+package com.example.SmartHome.Face;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +27,9 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.example.SmartHome.JsonPlaceHolderApi;
+import com.example.SmartHome.NullOnEmptyConverterFactory;
+import com.example.SmartHome.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,7 +59,7 @@ public class AddFaceDBActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_people);
+        setContentView(R.layout.activity_add_face_db);
 
         BASEURL = getString(R.string.request_url);
         bucketName = getString(R.string.bucket_name);

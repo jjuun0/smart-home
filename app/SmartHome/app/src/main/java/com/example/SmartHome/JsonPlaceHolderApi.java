@@ -1,5 +1,10 @@
 package com.example.SmartHome;
 
+import com.example.SmartHome.Face.FaceDB;
+import com.example.SmartHome.Face.FaceLog;
+import com.example.SmartHome.FingerPrint.FingerPrintDB;
+import com.example.SmartHome.FingerPrint.FingerPrintLog;
+
 import java.util.List;
 
 import retrofit2.Call;

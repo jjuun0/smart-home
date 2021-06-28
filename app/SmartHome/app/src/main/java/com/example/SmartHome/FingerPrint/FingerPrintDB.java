@@ -1,4 +1,4 @@
-package com.example.SmartHome;
+package com.example.SmartHome.FingerPrint;
 
 public class FingerPrintDB {
     /**

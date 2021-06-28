@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GetFaceDBActivity">
+    tools:context=".Face.GetFaceDBActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,13 +13,22 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/request_log_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:onClick="requestLogButtonClicked"
+            android:text="로그 조회" />
+
+        <Button
             android:id="@+id/request_get_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="requestGetButtonClicked"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-            android:text="조회" />
+            android:onClick="requestGetButtonClicked"
+            android:text="DB 조회" />
 
         <TextView
             android:id="@+id/result"
@@ -32,7 +42,8 @@
             android:id="@+id/people_list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:gravity="center">
 
             <RadioButton
                 android:id="@+id/people_radio"
@@ -61,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="30dp"
+                android:layout_margin="10dp"
                 android:onClick="requestAddButtonClicked"
                 android:text="추가" />
 
@@ -70,20 +81,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="30dp"
+                android:layout_margin="10dp"
                 android:onClick="requestDeleteButtonClicked"
                 android:text="삭제" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:onClick="onBackButtonClicked"
-            android:text="돌아가기" />
-
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

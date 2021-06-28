@@ -1,4 +1,4 @@
-package com.example.SmartHome;
+package com.example.SmartHome.FingerPrint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.SmartHome.FingerPrint.FingerPrintLog;
+import com.example.SmartHome.JsonPlaceHolderApi;
+import com.example.SmartHome.R;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -19,7 +23,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GetFaceLogActivity extends AppCompatActivity {
+public class GetFingerPrintLogActivity extends AppCompatActivity {
     private JsonPlaceHolderApi jsonPlaceHolderApi;
     private String BASEURL;
     TableLayout tableLayout;
@@ -27,27 +31,26 @@ public class GetFaceLogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_log);
+        setContentView(R.layout.activity_get_finger_print_log);
 
         BASEURL = getString(R.string.request_url);
 
         tableLayout = findViewById(R.id.table);
 
-        Retrofit retrofit = new Retrofit.Builder()  // retrofit 객체 선언
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASEURL)
-                .addConverterFactory(new NullOnEmptyConverterFactory())
-                .addConverterFactory(GsonConverterFactory.create())  // gson converter 생성, gson 는 json 을 자바 클래스로 바꾸는데 사용
+//                .addConverterFactory(new NullOnEmptyConverterFactory())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
     }
 
-    public void onTrueButtonClicked(View v){
+    public void onTrueButtonClicked(View v) {
         getCorrectLog("True");
     }
 
-    public void onFalseButtonClicked(View v){
+    public void onFalseButtonClicked(View v) {
         getCorrectLog("False");
     }
 
@@ -61,30 +64,30 @@ public class GetFaceLogActivity extends AppCompatActivity {
         tableLayout.addView(tableRow);
     }
 
-    private void getCorrectLog(String correct){
+    private void getCorrectLog(String correct) {
         tableLayout.removeAllViews();
 
-        Call<List<FaceLog>> call = jsonPlaceHolderApi.getFaceCorrectLog(correct);
+        Call<List<FingerPrintLog>> call = jsonPlaceHolderApi.getFingerPrintLog(correct);
 
-        call.enqueue(new Callback<List<FaceLog>>() {
+        call.enqueue(new Callback<List<FingerPrintLog>>() {
             @Override
-            public void onResponse(Call<List<FaceLog>> call, Response<List<FaceLog>> response) {
+            public void onResponse(Call<List<FingerPrintLog>> call, Response<List<FingerPrintLog>> response) {
                 if (!response.isSuccessful()) {
-//                    result_textview.setText("code: " + response.code());
                     Log.d("CorrectLog", Integer.toString(response.code()));
                     return;
                 }
 
-                List<FaceLog> logs = response.body();
+                List<FingerPrintLog> logs = response.body();
+
                 TableRow init_tableRow = new TableRow(getApplicationContext());
                 init_tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
                 if (correct.equals("True")) {
-                    String[] rows = {"Correct", "Date", "Name", "Similarity"};
+                    String[] rows = {"Correct", "Date", "Confidence", "ID"};
                     addItemOnRow(tableLayout, init_tableRow, rows);
 
-                    for (FaceLog log : logs) {
-                        String[] log_contents = {log.getCorrect(), log.getDate(), log.getName(), log.getSimilarity()};
+                    for (FingerPrintLog log : logs) {
+                        String[] log_contents = {log.getCorrect(), log.getDate(), log.getConfidence(), log.getID()};
 
                         TableRow tableRow = new TableRow(getApplicationContext());
                         tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -94,11 +97,11 @@ public class GetFaceLogActivity extends AppCompatActivity {
                 }
 
                 else {
-                    String[] rows = {"Correct", "Date"};
+                    String[] rows = {"Correct", "Date", "Message"};
                     addItemOnRow(tableLayout, init_tableRow, rows);
 
-                    for (FaceLog log : logs) {
-                        String[] log_contents = {log.getCorrect(), log.getDate()};
+                    for (FingerPrintLog log : logs) {
+                        String[] log_contents = {log.getCorrect(), log.getDate(), log.getMessage()};
 
                         TableRow tableRow = new TableRow(getApplicationContext());
                         tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -108,8 +111,9 @@ public class GetFaceLogActivity extends AppCompatActivity {
                 }
             }
 
+
             @Override
-            public void onFailure(Call<List<FaceLog>> call, Throwable t) {
+            public void onFailure(Call<List<FingerPrintLog>> call, Throwable t) {
                 Log.d("CorrectLog", t.getMessage());
             }
         });
