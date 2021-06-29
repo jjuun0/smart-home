@@ -64,7 +64,7 @@ public class AddFaceDBActivity extends AppCompatActivity {
         BASEURL = getString(R.string.request_url);
         bucketName = getString(R.string.bucket_name);
         region = getString(R.string.region);
-        saveFolder = "allowed";
+        saveFolder = getString(R.string.face_allow_folder);
 
         textViewResult = findViewById(R.id.text);
         nameText = findViewById(R.id.setname);
@@ -94,7 +94,7 @@ public class AddFaceDBActivity extends AppCompatActivity {
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createPeople(nameText.getText().toString());
+                saveFace(nameText.getText().toString());
 
                 // imageView 에 있는 이미지를 bitmap 으로 가져오기  https://hello-bryan.tistory.com/66
                 BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
@@ -130,10 +130,10 @@ public class AddFaceDBActivity extends AppCompatActivity {
         }
     }
 
-    private void createPeople(String name) {
-        FaceDB faceDB = new FaceDB(name, name +".jpg", "https://" + bucketName + ".s3." + region + ".amazonaws.com/" + saveFolder +"/" + name + ".jpg");
+    private void saveFace(String name) {
+        FaceDB faceDB = new FaceDB(name,"https://" + bucketName + ".s3." + region + ".amazonaws.com/" + saveFolder + "/" + name + ".jpg");
 
-        Call<FaceDB> call = jsonPlaceHolderApi.createFaceDB(faceDB);
+        Call<FaceDB> call = jsonPlaceHolderApi.saveFaceDB(faceDB);
 
         call.enqueue(new Callback<FaceDB>() {
             @Override

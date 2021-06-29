@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">SmartHome</string>
-    <string name="request_url">https://9c39rad6qj.execute-api.ap-northeast-2.amazonaws.com/new/</string>
-    <string name="bucket_name">junfirstbucket</string>
+    <string name="request_url">https://j8djj8efa2.execute-api.ap-northeast-2.amazonaws.com/deploy/</string>
+    <string name="bucket_name">smarthome-2021</string>
+    <string name="face_allow_folder">face/allowed</string>
     <string name="region">ap-northeast-2</string>
 
-    <string name="accessKey">AKIASH3RQY4CEKY5YVMK</string>
-    <string name="secretKey">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</string>
+    <string name="accessKey">AKIA6I7XS3WJAUPRZDQT</string>
+    <string name="secretKey">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</string>
 </resources>

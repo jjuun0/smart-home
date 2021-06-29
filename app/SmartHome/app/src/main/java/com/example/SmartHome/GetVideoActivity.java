@@ -35,8 +35,8 @@ public class GetVideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_get_video);
 
         videoView= findViewById(R.id.videoView);
-        //Video Uri
-        Uri videoUri= Uri.parse("https://junfirstbucket.s3.ap-northeast-2.amazonaws.com/vid.mp4");
+        //Video Uri - sample
+        Uri videoUri= Uri.parse("https://smarthome-2021.s3.ap-northeast-2.amazonaws.com/cctv/sample.mp4");
 
         //비디오뷰의 재생, 일시정지 등을 할 수 있는 '컨트롤바'를 붙여주는 작업
         videoView.setMediaController(new MediaController(this));

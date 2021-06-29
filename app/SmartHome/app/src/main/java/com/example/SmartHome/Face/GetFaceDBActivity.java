@@ -38,10 +38,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GetFaceDBActivity extends AppCompatActivity {
     private JsonPlaceHolderApi jsonPlaceHolderApi;
-    RadioGroup people_list_view;
+    RadioGroup faceDB_radio_group;
     private String BASEURL;
-    RadioButton people_radio;
-    ImageView people_image;
+    RadioButton faceDB_radio;
+    ImageView faceDB_image;
     List<FaceDB> faceDBS;
     FaceDB checked_faceDB;
     TextView result_textview;
@@ -53,12 +53,12 @@ public class GetFaceDBActivity extends AppCompatActivity {
 
         BASEURL = getString(R.string.request_url);
 
-        people_list_view = findViewById(R.id.people_list_view);
-        people_radio = findViewById(R.id.people_radio);
-        people_image = findViewById(R.id.people_image);
+        faceDB_radio_group = findViewById(R.id.faceDB_radio_group);
+        faceDB_radio = findViewById(R.id.faceDB_radio);
+        faceDB_image = findViewById(R.id.faceDB_image);
         result_textview = findViewById(R.id.result);
         result_textview.setText("조회 버튼을 눌러주세요.");
-        people_list_view.setVisibility(View.INVISIBLE);
+        faceDB_radio_group.setVisibility(View.INVISIBLE);
 
 
         Retrofit retrofit = new Retrofit.Builder()  // retrofit 객체 선언
@@ -72,14 +72,16 @@ public class GetFaceDBActivity extends AppCompatActivity {
 
 
         // http://blog.naver.com/PostView.nhn?blogId=kimsh2244&logNo=221070877167 change image by checked radio button
-        people_list_view.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        faceDB_radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 checked_faceDB = faceDBS.get(checkedId);
-                File imgFile = new  File(getApplicationContext().getFilesDir(), checked_faceDB.getImage_Name());  // 'data/data/패키지/files' 에 이미지 저장
+                File imgFile = new  File(getApplicationContext().getFilesDir(), checked_faceDB.getName() + ".jpg");  // 'data/data/패키지/files' 에 이미지 저장
+
+                Toast.makeText(GetFaceDBActivity.this, checked_faceDB.getName(), Toast.LENGTH_LONG).show();
                 if(imgFile.exists()){
                     Bitmap imgBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                    people_image.setImageBitmap(imgBitmap);
+                    faceDB_image.setImageBitmap(imgBitmap);
                     result_textview.setText("삭제하실 항목을 선택하여 삭제 버튼을 눌러주세요");
                 }
                 else{
@@ -101,12 +103,12 @@ public class GetFaceDBActivity extends AppCompatActivity {
     }
 
     public void requestGetButtonClicked(View v){
-        getPeoples();
+        getradioFaceDB();
         result_textview.setText("삭제하실 항목을 선택하여 삭제 버튼을 눌러주세요");
     }
 
-    private void getPeoples() {
-        people_list_view.setVisibility(View.VISIBLE);
+    private void getradioFaceDB() {
+        faceDB_radio_group.setVisibility(View.VISIBLE);
         Call<List<FaceDB>> call = jsonPlaceHolderApi.getFaceDB();
 
         call.enqueue(new Callback<List<FaceDB>>() {
@@ -119,7 +121,7 @@ public class GetFaceDBActivity extends AppCompatActivity {
 
                 faceDBS = response.body();
 
-                people_list_view.removeAllViews();
+                faceDB_radio_group.removeAllViews();
 
                 for (FaceDB faceDB : faceDBS) {
                     // https://blog.daum.net/andro_java/1212 radio button 동적으로 추가
@@ -128,8 +130,8 @@ public class GetFaceDBActivity extends AppCompatActivity {
                     people_radio_button.setTextColor(getResources().getColor(R.color.black));
                     people_radio_button.setId(faceDBS.indexOf(faceDB));
                     RadioGroup.LayoutParams rprms= new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
-                    people_list_view.addView(people_radio_button, rprms);
-                    downloadS3(faceDB.getImage_Name());
+                    faceDB_radio_group.addView(people_radio_button, rprms);
+                    downloadS3(faceDB.getName());
 
                 }
             }
@@ -141,12 +143,12 @@ public class GetFaceDBActivity extends AppCompatActivity {
         });
     }
 
-    private void downloadS3(String filename) {
+    private void downloadS3(String name) {
         // KEY and SECRET are gotten when we create an IAM user above
         String accessKey = getString(R.string.accessKey);
         String secretKey = getString(R.string.secretKey);
         String bucketName = getString(R.string.bucket_name);
-        String folderName = "allowed";
+        String folderName = getString(R.string.face_allow_folder);
 
         AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
         AmazonS3Client s3Client = new AmazonS3Client(awsCredentials, Region.getRegion(Regions.AP_NORTHEAST_2));
@@ -155,7 +157,7 @@ public class GetFaceDBActivity extends AppCompatActivity {
         TransferNetworkLossHandler.getInstance(this);
 
         TransferObserver downloadObserver =
-                transferUtility.download(bucketName, folderName + "/" + filename, new File(getApplicationContext().getFilesDir(), filename));
+                transferUtility.download(bucketName, folderName + "/" + name + ".jpg", new File(getApplicationContext().getFilesDir(), name + ".jpg"));
 
         downloadObserver.setTransferListener(new TransferListener() {
 
