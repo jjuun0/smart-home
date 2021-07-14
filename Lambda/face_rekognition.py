@@ -8,19 +8,16 @@ dynamodb = boto3.resource('dynamodb')
 
 
 def lambda_handler(event, context):
-    print(event)
+    print('event: ', event)
 
     bucket = event['Records'][0]['s3']['bucket']['name']
     targetImage = event['Records'][0]['s3']['object']['key']
-    sourceImage = 'allowed/' + targetImage.split('/')[-1].split('_')[0] + '.jpg'
+    sourceImage = 'face/allowed/' + targetImage.split('/')[-1].split('_')[0] + '.jpg'
     # sourceImage = 'allowed/jun.jpg'
 
-    print(bucket)
-    print(targetImage)
-    print(sourceImage)
-
-    # s3 = boto3.client('s3')
-    # s3.download_file(bucket, key, local_filename)
+    print('bucket: ', bucket)
+    print('target: ', targetImage)
+    print('entered: ', sourceImage)
 
     client = boto3.client('rekognition')
 
@@ -29,7 +26,7 @@ def lambda_handler(event, context):
         TargetImage={'S3Object': {'Bucket': bucket, 'Name': str(targetImage)}}
     )
 
-    print(faceComparison)
+    print('faceComparison: ', faceComparison)
 
     if faceComparison['FaceMatches']:  # 얼굴 비교 값이 일치할때
         result = {
@@ -49,7 +46,7 @@ def lambda_handler(event, context):
     name, date = targetImage.split('/')[-1].split('_')
     date = date.split('.')[0]
 
-    table = dynamodb.Table('ResultLog')
+    table = dynamodb.Table('FaceLog')
     db_response = table.put_item(
         Item={
             'Date': date,
@@ -59,6 +56,7 @@ def lambda_handler(event, context):
         }
     )
 
-    print(db_response)
+    print('db_response: ', db_response)
 
-    # return result
+    return
+
