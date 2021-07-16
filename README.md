@@ -1,4 +1,6 @@
 # smart-home
+- 지문인식 센서 라이브러리 참고 링크  
+  - https://learn.adafruit.com/adafruit-optical-fingerprint-sensor?view=all  
 
 # 2021.04.24
 - opencv 를 이용한 face detection 을 통해, 내 s3 버켓에 이미지 파일을 업로드함.  
