@@ -2,6 +2,7 @@ package com.example.SmartHome.Face;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -10,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.SmartHome.JsonPlaceHolderApi;
 import com.example.SmartHome.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -99,14 +102,31 @@ public class GetFaceLogActivity extends AppCompatActivity {
                 else {
                     String[] rows = {"Correct", "Date"};
                     addItemOnRow(tableLayout, init_tableRow, rows);
+                    List<String> name_list = new ArrayList<String>();
 
                     for (FaceLog log : logs) {
                         String[] log_contents = {log.getCorrect(), log.getDate()};
+                        name_list.add(log.getName());
 
                         TableRow tableRow = new TableRow(getApplicationContext());
                         tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
                         addItemOnRow(tableLayout, tableRow, log_contents);
+                        tableRow.setId(logs.indexOf(log));
+                        tableRow.setClickable(true);
+                        tableRow.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View view) {
+                                TableRow t = (TableRow) view;
+                                TextView dateTextView = (TextView) t.getChildAt(1);
+                                int index = t.getId();
+                                String date = dateTextView.getText().toString();
+//                                Toast.makeText(GetFaceLogActivity.this, Integer.toString(index), Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(), GetStrangerActivity.class);
+                                intent.putExtra("date", date);
+                                intent.putExtra("name", name_list.get(index));
+                                startActivity(intent);
+                            }
+                        });
                     }
                 }
             }
@@ -117,4 +137,6 @@ public class GetFaceLogActivity extends AppCompatActivity {
             }
         });
     }
+
+    
 }

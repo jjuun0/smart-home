@@ -76,7 +76,7 @@ public class GetFaceDBActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 checked_faceDB = faceDBS.get(checkedId);
-                File imgFile = new  File(getApplicationContext().getFilesDir(), checked_faceDB.getName() + ".jpg");  // 'data/data/패키지/files' 에 이미지 저장
+                File imgFile = new File(getApplicationContext().getFilesDir(), checked_faceDB.getName() + ".jpg");  // 'data/data/패키지/files' 에 이미지 저장
 
                 Toast.makeText(GetFaceDBActivity.this, checked_faceDB.getName(), Toast.LENGTH_LONG).show();
                 if(imgFile.exists()){

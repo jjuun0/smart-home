@@ -48,7 +48,7 @@ public class MessagingService extends FirebaseMessagingService {
                 builder.setVibrate(new long[] {200, 100, 200});
             }
 
-            builder.setSmallIcon(R.drawable.ic_launcher_background)
+            builder.setSmallIcon(R.drawable.ic_warning)
                     .setAutoCancel(true)  // 알림 터치시 자동으로 삭제
                     .setDefaults(Notification.DEFAULT_SOUND)  // 알림 발생시 진동, 사운드 설정
                     .setContentTitle(title)

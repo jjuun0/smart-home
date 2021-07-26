@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartHome">
-        <activity android:name=".FingerPrint.GetFingerPrintLogActivity"></activity>
+        <activity android:name=".Face.GetStrangerActivity"></activity>
+        <activity android:name=".FingerPrint.GetFingerPrintLogActivity" />
         <activity android:name=".FingerPrint.GetFingerPrintDBActivity" />
         <activity android:name=".GetVideoActivity" />
         <activity android:name=".Face.GetFaceLogActivity" />
