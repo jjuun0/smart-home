@@ -36,5 +36,7 @@ public interface JsonPlaceHolderApi {
     @GET("fingerprint/log/{Correct}") // 로그 조회
     Call<List<FingerPrintLog>> getFingerPrintLog(@Path("Correct") String Correct);
 
+    @POST("admin/allow")  // 항목 추가
+    Call<Admin> addAdmin(@Body Admin admin);
 
 }

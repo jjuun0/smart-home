@@ -33,5 +33,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void AdminButtonClicked(View v){
+        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+        startActivity(intent);
+    }
+
 
 }
