@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.SmartHome.CCTV.getCCTVActivity;
 import com.example.SmartHome.Face.GetFaceDBActivity;
-import com.example.SmartHome.Face.GetFaceLogActivity;
 import com.example.SmartHome.FingerPrint.GetFingerPrintDBActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,8 +23,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+//    public void getVideoButtonClicked(View v){
+//        Intent intent = new Intent(getApplicationContext(), GetVideoActivity.class);
+//        startActivity(intent);
+//    }
+
     public void getVideoButtonClicked(View v){
-        Intent intent = new Intent(getApplicationContext(), GetVideoActivity.class);
+        Intent intent = new Intent(getApplicationContext(), getCCTVActivity.class);
         startActivity(intent);
     }
 

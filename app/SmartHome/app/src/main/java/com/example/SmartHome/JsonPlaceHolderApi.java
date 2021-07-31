@@ -39,4 +39,11 @@ public interface JsonPlaceHolderApi {
     @POST("admin/allow")  // 항목 추가
     Call<Admin> addAdmin(@Body Admin admin);
 
+    @GET("cctv") // CCTV 폴더 조회
+    Call<List<String>> getCCTVfolders();
+
+    @GET("cctv/{date}") // CCTV 파일 조회
+    Call<List<String>> getCCTVfiles(@Path("date") String date);
+
+
 }

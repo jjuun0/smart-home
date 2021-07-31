@@ -61,7 +61,8 @@ public class GetFingerPrintDBActivity extends AppCompatActivity {
             TextView textView = new TextView(getApplicationContext());
             textView.setText(list[i]);
             textView.setGravity(Gravity.CENTER);
-            tableRow.addView(textView);
+            TableRow.LayoutParams prms = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,100);
+            tableRow.addView(textView, prms);
         }
         tableLayout.addView(tableRow);
     }
@@ -81,7 +82,7 @@ public class GetFingerPrintDBActivity extends AppCompatActivity {
 
                 for (FingerPrintDB item : db) {
                     TableRow tableRow = new TableRow(getApplicationContext());
-                    tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//                    tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
                     String[] rows = {item.getID(), item.getName()};
                     addItemOnRow(tableLayout, tableRow, rows);

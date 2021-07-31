@@ -16,11 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartHome">
-        <activity android:name=".AdminActivity"></activity>
+        <activity android:name=".CCTV.GetCCTVFilesActivity"></activity>
+        <activity android:name=".CCTV.getCCTVActivity" />
+        <activity android:name=".AdminActivity" />
         <activity android:name=".Face.GetStrangerActivity" />
         <activity android:name=".FingerPrint.GetFingerPrintLogActivity" />
         <activity android:name=".FingerPrint.GetFingerPrintDBActivity" />
-        <activity android:name=".GetVideoActivity" />
+        <activity android:name=".CCTV.GetVideoActivity" />
         <activity android:name=".Face.GetFaceLogActivity" />
 
         <service

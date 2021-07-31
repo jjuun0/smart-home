@@ -59,7 +59,8 @@ public class GetFingerPrintLogActivity extends AppCompatActivity {
             TextView textView = new TextView(getApplicationContext());
             textView.setText(list[i]);
             textView.setGravity(Gravity.CENTER);
-            tableRow.addView(textView);
+            TableRow.LayoutParams prms = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,100);
+            tableRow.addView(textView, prms);
         }
         tableLayout.addView(tableRow);
     }
@@ -90,7 +91,7 @@ public class GetFingerPrintLogActivity extends AppCompatActivity {
                         String[] log_contents = {log.getCorrect(), log.getDate(), log.getConfidence(), log.getID()};
 
                         TableRow tableRow = new TableRow(getApplicationContext());
-                        tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//                        tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
                         addItemOnRow(tableLayout, tableRow, log_contents);
                     }
@@ -104,7 +105,7 @@ public class GetFingerPrintLogActivity extends AppCompatActivity {
                         String[] log_contents = {log.getCorrect(), log.getDate(), log.getMessage()};
 
                         TableRow tableRow = new TableRow(getApplicationContext());
-                        tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//                        tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
                         addItemOnRow(tableLayout, tableRow, log_contents);
                     }
