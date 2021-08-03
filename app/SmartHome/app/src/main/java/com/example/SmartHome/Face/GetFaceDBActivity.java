@@ -1,7 +1,9 @@
 package com.example.SmartHome.Face;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -185,7 +187,7 @@ public class GetFaceDBActivity extends AppCompatActivity {
     }
 
     public void requestDeleteButtonClicked(View v){
-        deletePeople();
+        showAlertDialog();
     }
 
     private void deletePeople(){
@@ -218,4 +220,26 @@ public class GetFaceDBActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void showAlertDialog() {
+        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(GetFaceDBActivity.this)
+                .setTitle("정말로 삭제하시겠습니까?")
+                .setMessage(checked_faceDB.getName())
+                .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        deletePeople();
+                    }
+                })
+                .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(GetFaceDBActivity.this, "삭제를 취소하였습니다", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        AlertDialog msgDlg = msgBuilder.create();
+        msgDlg.show();
+    }
+
+
 }
