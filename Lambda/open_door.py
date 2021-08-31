@@ -9,14 +9,15 @@ def lambda_handler(event, context):
     print('event', event)
 
     correct = event['Records'][0]['dynamodb']['NewImage']['Correct']['S']
-    if correct == "True":
-        # Change topic, qos and payload
-        publish_response = client.publish(
-            topic='aws/motor',
-            qos=1,
-            payload=json.dumps({"Door open": correct})
-        )
+    # if correct == "True":
+    # Change topic, qos and payload
 
-        print('publish response: ', publish_response)
+    publish_response = client.publish(
+        topic='aws/motor',
+        qos=1,
+        payload=json.dumps({"face_result": correct})
+    )
+
+    print('publish response: ', publish_response)
 
     return
