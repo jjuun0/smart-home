@@ -3,6 +3,7 @@ package com.example.SmartHome.FingerPrint;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,7 +38,7 @@ public class GetFingerPrintDBActivity extends AppCompatActivity {
 
         BASEURL = getString(R.string.request_url);
 
-        tableLayout = findViewById(R.id.fingerprint_table);
+        tableLayout = findViewById(R.id.fingerprint_db_table);
 
 
         Retrofit retrofit = new Retrofit.Builder()  // retrofit 객체 선언
@@ -60,6 +61,7 @@ public class GetFingerPrintDBActivity extends AppCompatActivity {
         for (int i = 0; i < list.length; i++) {
             TextView textView = new TextView(getApplicationContext());
             textView.setText(list[i]);
+            textView.setTextColor(Color.BLACK);
             textView.setGravity(Gravity.CENTER);
             TableRow.LayoutParams prms = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,100);
             tableRow.addView(textView, prms);

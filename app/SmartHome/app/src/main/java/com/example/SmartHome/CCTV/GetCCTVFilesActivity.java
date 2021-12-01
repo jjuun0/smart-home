@@ -3,6 +3,7 @@ package com.example.SmartHome.CCTV;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -49,22 +50,30 @@ public class GetCCTVFilesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         date_folder = intent.getStringExtra("date");
 
-        String date_text = "";
-        String[] dates = date_folder.split("_");
-        String[] time = {"년", "월", "일"};
-        for(int i = 0; i < dates.length; i++){
-            date_text += dates[i] + time[i] + " ";
-        }
-
-        textView.setText(date_text);
+        String[] folder_format = {"년", "월", "일"};
+        textView.setText(date_format(date_folder, folder_format));
+        textView.setTextColor(Color.BLACK);
+        textView.setBackgroundResource(R.drawable.edge);
         getCCTVfiles(date_folder);
+    }
+
+    public String date_format(String date, String[] format){
+        String date_text = "";
+        String[] dates = date.split("_");
+        for(int i = 0; i < dates.length; i++){
+            date_text += dates[i] + format[i] + " ";
+        }
+        return date_text;
     }
 
     public void addItemOnRow(TableLayout tableLayout, TableRow tableRow, String name) {
         TextView textView = new TextView(getApplicationContext());
-        textView.setText(name);
+        String[] file_format = {"시", "분", "초"};
+        textView.setText(date_format(name, file_format));
+        textView.setTextColor(Color.BLACK);
         textView.setGravity(Gravity.CENTER);
         TableRow.LayoutParams prms = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,100);
+        tableRow.setBackgroundResource(R.drawable.edge);
         tableRow.addView(textView, prms);
         tableLayout.addView(tableRow);
     }
